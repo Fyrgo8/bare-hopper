@@ -7,8 +7,8 @@ namespace bare::candidate {
 // Inputs are immutable; output must be completely overwritten on every launch.
 // Candidate gets no reference/oracle output, and no CUTLASS include directory.
 bool available();
-char const* name();
-void* prepare(Problem, Buffers, cudaStream_t);
-void launch(void* context, cudaStream_t);
-void cleanup(void* context);
-}
+char const *name();
+void *prepare(Problem, Buffers, cudaStream_t);
+void launch(void *context, cudaStream_t);
+void cleanup(void *context);
+} // namespace bare::candidate

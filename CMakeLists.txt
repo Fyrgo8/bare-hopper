@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.24)
+cmake_minimum_required(VERSION 3.22)
 project(bare_hopper LANGUAGES CXX CUDA)
 find_package(CUDAToolkit 12.3 REQUIRED)
 find_package(Git REQUIRED)
