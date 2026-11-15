@@ -76,6 +76,22 @@ def test_missing_case_cannot_pass(tmp_path: Path) -> None:
         summarize(path, ["square", "missing"])
 
 
+def test_truncated_rounds_cannot_pass(tmp_path: Path) -> None:
+    path = tmp_path / "samples.csv"
+    make_csv(path)
+    with pytest.raises(ValueError, match="incomplete round count"):
+        summarize(path, ["square"], expected_rounds=40)
+
+
+def test_duplicate_round_cannot_pass(tmp_path: Path) -> None:
+    path = tmp_path / "samples.csv"
+    make_csv(path)
+    lines = path.read_text(encoding="utf-8").splitlines()
+    path.write_text("\n".join(lines + [lines[-1]]) + "\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="missing/duplicate rounds"):
+        summarize(path, ["square"])
+
+
 def test_frequency_and_throttling_must_be_valid() -> None:
     good = {
         "clocks.current.sm": "1410",

@@ -79,7 +79,10 @@ def active_pids(gpu: str) -> list[int]:
             "--format=csv,noheader,nounits",
         ]
     )
-    return [int(line) for line in output.splitlines() if line.strip().isdigit()]
+    rows = [line.strip() for line in output.splitlines() if line.strip()]
+    if any(not line.isdigit() for line in rows):
+        raise RuntimeError("GPU process enumeration unavailable: " + output)
+    return [int(line) for line in rows]
 
 
 def clock_issues(
@@ -206,9 +209,14 @@ def main() -> int:
         command(["git", "diff", "HEAD"]), encoding="utf-8"
     )
     manifest["before"] = command(["nvidia-smi", "-i", gpu, "-q"])
-    manifest["binary_info"] = json.loads(command([str(binary), "--describe"], env=env))
+    binary_info: dict[str, object] = json.loads(
+        command([str(binary), "--describe"], env=env)
+    )
+    manifest["binary_info"] = binary_info
     write_json(out / "manifest.json", manifest)
     try:
+        if args.compare and binary_info.get("candidate_available") is not True:
+            raise RuntimeError("Candidate is unimplemented; no clock settings changed")
         prefix = ["sudo", "-n"] if args.sudo else []
         locks: list[dict[str, object]] = []
         settings = [["-lgc", f"{args.sm_clock},{args.sm_clock}"]]
@@ -312,6 +320,8 @@ def main() -> int:
             )
         ]
         problems += clock_issues(measured, args.sm_clock, args.memory_clock)
+        if len({row["power.limit"] for row in measured}) != 1:
+            problems.append("Power limit unavailable or changed during measurement")
         if not all(
             any(
                 int(row["poll_start_unix_ms"]) <= end
