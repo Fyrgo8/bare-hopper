@@ -1,0 +1,36 @@
+name: Benchmark build and host checks
+on:
+  push:
+    paths: ['CMakeLists.txt', 'src/**', 'include/**', 'scripts/**', 'tests/**', 'configs/**', 'pyproject.toml', 'uv.lock', '.github/workflows/**']
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  cuda-build:
+    runs-on: ubuntu-22.04
+    container: nvidia/cuda:12.8.1-devel-ubuntu22.04
+    steps:
+      - run: apt-get update && apt-get install -y --no-install-recommends git cmake ninja-build g++
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: NVIDIA/cutlass
+          ref: ad7b2f5e84fcfa124cb02b91d5bd26d238c0459e
+          path: .deps/cutlass
+      - run: cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+      - run: cmake --build build -j 2
+      - run: bash -n scripts/setup_cutlass.sh
+  host-checks:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install uv
+      - run: uv sync --frozen
+      - run: uv run pyright
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run pytest
