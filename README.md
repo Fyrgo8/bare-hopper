@@ -1,5 +1,5 @@
 # bare-hopper
 
-A hands-on project to learn GPU kernel fundamentals by reimplementing Hopper kernels in CUDA C++ and PTX, without CUTLASS/CuTe dependencies.
+用 CUDA C++ 和 PTX 手写 Hopper GPU 算子，不依赖 CUTLASS/CuTe，通过复现高性能实现锻炼算子开发基本功。
 
-Starting with BF16 GEMM, then FlashAttention-3 forward and backward. On H20, the goal is numerical correctness and latency no more than 3% above the reference implementation for each agreed benchmark case.
+从 BF16 GEMM 开始，逐步复现 FlashAttention-3 的前向和反向。在 H20 上保证数值正确，并以每个约定测试用例的耗时不超过参考实现的 103% 为目标。
