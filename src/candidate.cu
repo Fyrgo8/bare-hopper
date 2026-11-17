@@ -90,12 +90,15 @@ __device__ void store_partial(float const (&acc)[64], Problem p, float *partial,
   }
 }
 
+template <int Unroll>
 __global__ void reduce_splits(Problem p, Buffers b, float const *partial, int splits) {
   size_t index = size_t(blockIdx.x) * blockDim.x + threadIdx.x;
   size_t elements = size_t(p.m) * p.n;
   if (index < elements) {
     float sum = 0;
-#pragma unroll 1
+    // Expose independent loads from upcoming splits to the scheduler. Keep
+    // one accumulator so additions still follow ascending split order.
+#pragma unroll Unroll
     for (int split = 0; split < splits; ++split)
       sum += partial[size_t(split) * elements + index];
     b.d[index] = __float2bfloat16_rn(sum);
@@ -133,6 +136,7 @@ struct Context {
   bool stable = false;
   bool grouped = false;
   int splits = 1;
+  int reduce_unroll = 16;
   float *partial = nullptr;
   ~Context() { if (partial) cudaFree(partial); }
 };
@@ -344,7 +348,9 @@ char const *name() {
            ? "-segment256-k16384" : "") +
       ((!std::getenv("BARE_GEMM_SPLIT_K") ||
         std::string(std::getenv("BARE_GEMM_SPLIT_K")) == "1")
-           ? "-split256-small-output" : "");
+           ? "-split256-small-output" : "") +
+      "-reduce-unroll" + (std::getenv("BARE_GEMM_REDUCE_UNROLL")
+          ? std::getenv("BARE_GEMM_REDUCE_UNROLL") : "16");
   return result.c_str();
 }
 void *prepare(Problem p, Buffers b, cudaStream_t) {
@@ -354,6 +360,11 @@ void *prepare(Problem p, Buffers b, cudaStream_t) {
   auto c = std::make_unique<Context>();
   c->problem = p;
   c->buffers = b;
+  if (auto *unroll = std::getenv("BARE_GEMM_REDUCE_UNROLL")) {
+    c->reduce_unroll = std::stoi(unroll);
+    if (c->reduce_unroll != 1 && c->reduce_unroll != 16)
+      throw std::runtime_error("BARE_GEMM_REDUCE_UNROLL must be 1 or 16");
+  }
   if (auto *group = std::getenv("BARE_GEMM_GROUP_M")) {
     int value = std::stoi(group);
     if (value != 1 && value != 8)
@@ -401,8 +412,13 @@ void launch(void *context, cudaStream_t stream) {
     dispatch(c, grid, stream, false);
   if (c.splits > 1) {
     check(cudaGetLastError());
-    reduce_splits<<<(size_t(c.problem.m) * c.problem.n + 255) / 256, 256, 0, stream>>>(
-        c.problem, c.buffers, c.partial, c.splits);
+    auto blocks = (size_t(c.problem.m) * c.problem.n + 255) / 256;
+    if (c.reduce_unroll == 1)
+      reduce_splits<1><<<blocks, 256, 0, stream>>>(
+          c.problem, c.buffers, c.partial, c.splits);
+    else
+      reduce_splits<16><<<blocks, 256, 0, stream>>>(
+          c.problem, c.buffers, c.partial, c.splits);
   }
   check(cudaGetLastError());
 }
