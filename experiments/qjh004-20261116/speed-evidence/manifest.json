@@ -1,0 +1,113 @@
+{
+  "kind": "diagnostic_timing",
+  "acceptance_status": "inconclusive_memory_unlocked",
+  "gpu": 0,
+  "sm_requested": 1800,
+  "memory_locked": false,
+  "binary_sha256": "b101c10ba26d036337324a50de658418df4a8dd4f712415cdc08eb1f76677a38",
+  "jobs": [
+    {
+      "label": "old-a",
+      "stable": "0",
+      "exit_code": 0,
+      "argv": [
+        "/home/fengyunhao/bare-hopper-qjh004-20261116/results/speed-20261116/gemm_bench",
+        "--compare",
+        "--cache",
+        "rotating",
+        "--cases",
+        "/home/fengyunhao/bare-hopper-qjh004-20261116/results/speed-20261116/long.csv",
+        "--rounds",
+        "30",
+        "--warmup",
+        "32",
+        "--output",
+        "/home/fengyunhao/bare-hopper-qjh004-20261116/results/speed-20261116/old-a.csv"
+      ],
+      "external_pids": []
+    },
+    {
+      "label": "stable-formal",
+      "stable": "1",
+      "exit_code": 0,
+      "argv": [
+        "/home/fengyunhao/bare-hopper-qjh004-20261116/results/speed-20261116/gemm_bench",
+        "--compare",
+        "--cache",
+        "rotating",
+        "--cases",
+        "/home/fengyunhao/bare-hopper-qjh004-20261116/results/speed-20261116/formal.csv",
+        "--rounds",
+        "30",
+        "--warmup",
+        "32",
+        "--output",
+        "/home/fengyunhao/bare-hopper-qjh004-20261116/results/speed-20261116/stable-formal.csv"
+      ],
+      "external_pids": [
+        "1649063",
+        "1649418"
+      ]
+    },
+    {
+      "label": "stable-long",
+      "stable": "1",
+      "exit_code": 0,
+      "argv": [
+        "/home/fengyunhao/bare-hopper-qjh004-20261116/results/speed-20261116/gemm_bench",
+        "--compare",
+        "--cache",
+        "rotating",
+        "--cases",
+        "/home/fengyunhao/bare-hopper-qjh004-20261116/results/speed-20261116/long.csv",
+        "--rounds",
+        "30",
+        "--warmup",
+        "32",
+        "--output",
+        "/home/fengyunhao/bare-hopper-qjh004-20261116/results/speed-20261116/stable-long.csv"
+      ],
+      "external_pids": []
+    },
+    {
+      "label": "old-b",
+      "stable": "0",
+      "exit_code": 0,
+      "argv": [
+        "/home/fengyunhao/bare-hopper-qjh004-20261116/results/speed-20261116/gemm_bench",
+        "--compare",
+        "--cache",
+        "rotating",
+        "--cases",
+        "/home/fengyunhao/bare-hopper-qjh004-20261116/results/speed-20261116/long.csv",
+        "--rounds",
+        "30",
+        "--warmup",
+        "32",
+        "--output",
+        "/home/fengyunhao/bare-hopper-qjh004-20261116/results/speed-20261116/old-b.csv"
+      ],
+      "external_pids": []
+    },
+    {
+      "label": "formal-repeat",
+      "stable": "1",
+      "exit_code": 0,
+      "argv": [
+        "/home/fengyunhao/bare-hopper-qjh004-20261116/results/speed-20261116/gemm_bench",
+        "--compare",
+        "--cache",
+        "rotating",
+        "--cases",
+        "/home/fengyunhao/bare-hopper-qjh004-20261116/results/speed-20261116/formal.csv",
+        "--rounds",
+        "30",
+        "--warmup",
+        "32",
+        "--output",
+        "/home/fengyunhao/bare-hopper-qjh004-20261116/results/speed-20261116/formal-repeat.csv"
+      ],
+      "external_pids": []
+    }
+  ]
+}

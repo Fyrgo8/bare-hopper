@@ -9,6 +9,33 @@
 namespace bare::candidate {
 namespace {
 constexpr int BM = 64, BN = 128, BK = 64;
+constexpr int StableK = 16384, SegmentK = 256;
+
+// The WGMMA partial is bounded in length. Merge completed partials using
+// ordinary FP32 additions, before the single final BF16 conversion.
+template <bool Stable> struct Accumulator {
+  float part[64] = {};
+  float total[Stable ? 64 : 1] = {};
+
+  __device__ void finish_tile(int tile, int tiles) {
+    if constexpr (Stable) {
+      if ((tile + 1) % (SegmentK / BK) == 0 || tile + 1 == tiles) {
+#pragma unroll
+        for (int i = 0; i < 64; ++i) {
+          total[i] += part[i];
+          part[i] = 0;
+        }
+        // All WGMMA operations have been waited for before this call.
+        // Publish the ordinary register writes to the next WGMMA group.
+        hopper::fence();
+      }
+    }
+  }
+  __device__ float const (&result() const)[64] {
+    if constexpr (Stable) return total;
+    else return part;
+  }
+};
 
 void check(cudaError_t status) {
   if (status != cudaSuccess)
@@ -46,10 +73,11 @@ __device__ void store(float const (&acc)[64], Problem p, Buffers b) {
   }
 }
 
+template <bool Stable = false>
 __global__ __launch_bounds__(128) void vector_gemm(Problem p, Buffers b) {
   __shared__ __align__(1024) __nv_bfloat16 a[BM * BK];
   __shared__ __align__(1024) __nv_bfloat16 bb[BN * BK];
-  float acc[64] = {};
+  Accumulator<Stable> acc;
   hopper::fence();
   for (int k = 0; k < p.k; k += BK) {
     load<BM>(a, b.a, int(blockIdx.y) * BM, p.m, p.k, k);
@@ -58,12 +86,13 @@ __global__ __launch_bounds__(128) void vector_gemm(Problem p, Buffers b) {
     __syncthreads();
 #pragma unroll
     for (int sub = 0; sub < BK; sub += 16)
-      hopper::mma(acc, hopper::descriptor(a + sub), hopper::descriptor(bb + sub));
+      hopper::mma(acc.part, hopper::descriptor(a + sub), hopper::descriptor(bb + sub));
     hopper::commit();
     hopper::wait();
+    acc.finish_tile(k / BK, (p.k + BK - 1) / BK);
     __syncthreads(); // WGMMA has finished reading operands before reuse.
   }
-  store(acc, p, b);
+  store(acc.result(), p, b);
 }
 
 struct Context {
@@ -72,6 +101,7 @@ struct Context {
   CUtensorMap map_a{}, map_b{};
   int stages = 0;
   bool specialized = false;
+  bool stable = false;
 };
 
 __device__ void barrier_wait(uint64_t *barrier, int phase) {
@@ -91,7 +121,7 @@ __device__ void tma_load(CUtensorMap const *map, void *dst, uint64_t *barrier,
          "r"(hopper::smem_address(barrier)), "r"(k), "r"(row) : "memory");
 }
 
-template <int Stages, bool Specialized = false>
+template <int Stages, bool Specialized = false, bool Stable = false>
 __global__ __launch_bounds__(Specialized ? 256 : 128) void tma_gemm(
     Problem p, Buffers b, const __grid_constant__ CUtensorMap map_a,
     const __grid_constant__ CUtensorMap map_b) {
@@ -111,7 +141,7 @@ __global__ __launch_bounds__(Specialized ? 256 : 128) void tma_gemm(
     asm volatile("fence.proxy.async.shared::cta;" ::: "memory");
   }
   __syncthreads();
-  float acc[64] = {};
+  Accumulator<Stable> acc;
   hopper::fence();
   int tiles = (p.k + BK - 1) / BK;
   if constexpr (Specialized) {
@@ -153,9 +183,10 @@ __global__ __launch_bounds__(Specialized ? 256 : 128) void tma_gemm(
     auto *bb = a + BM * BK;
 #pragma unroll
     for (int sub = 0; sub < BK; sub += 16)
-      hopper::mma(acc, hopper::descriptor(a + sub), hopper::descriptor(bb + sub));
+      hopper::mma(acc.part, hopper::descriptor(a + sub), hopper::descriptor(bb + sub));
     hopper::commit();
     hopper::wait();
+    acc.finish_tile(tile, tiles);
     if constexpr (Specialized) {
       // Only the consumer warpgroup participates in this named barrier.
       asm volatile("bar.sync 1, 128;" ::: "memory");
@@ -175,7 +206,7 @@ __global__ __launch_bounds__(Specialized ? 256 : 128) void tma_gemm(
       tma_load(&map_b, bb, full + s, (tile + Stages) * BK, int(blockIdx.x) * BN);
     }
   }
-  store(acc, p, b);
+  store(acc.result(), p, b);
 }
 
 void make_map(CUtensorMap &map, void const *ptr, int rows, int k, int tile_rows) {
@@ -191,15 +222,23 @@ void make_map(CUtensorMap &map, void const *ptr, int rows, int k, int tile_rows)
     throw std::runtime_error("candidate: tensor map error " + std::to_string(status));
 }
 
-template <int Stages, bool Specialized>
+template <int Stages, bool Specialized, bool Stable>
 void dispatch(Context const &c, dim3 grid, cudaStream_t stream, bool configure) {
   constexpr int bytes = Stages * (BM + BN) * BK * 2;
   if (configure)
-    check(cudaFuncSetAttribute(tma_gemm<Stages, Specialized>,
+    check(cudaFuncSetAttribute(tma_gemm<Stages, Specialized, Stable>,
                                cudaFuncAttributeMaxDynamicSharedMemorySize, bytes));
   else
-    tma_gemm<Stages, Specialized><<<grid, Specialized ? 256 : 128, bytes, stream>>>(
+    tma_gemm<Stages, Specialized, Stable><<<grid, Specialized ? 256 : 128, bytes, stream>>>(
         c.problem, c.buffers, c.map_a, c.map_b);
+}
+
+template <int Stages, bool Specialized>
+void dispatch(Context const &c, dim3 grid, cudaStream_t stream, bool configure) {
+  if (c.stable)
+    dispatch<Stages, Specialized, true>(c, grid, stream, configure);
+  else
+    dispatch<Stages, Specialized, false>(c, grid, stream, configure);
 }
 
 void dispatch(Context const &c, dim3 grid, cudaStream_t stream, bool configure) {
@@ -219,7 +258,7 @@ void dispatch(Context const &c, dim3 grid, cudaStream_t stream, bool configure) 
 } // namespace
 
 bool available() { return true; }
-char const *name() {
+char const *implementation_name() {
   if (auto *ws = std::getenv("BARE_GEMM_WARP_SPECIALIZED");
       ws && std::string(ws) == "1") {
     static std::string specialized_name = std::string("bare-sm90a-bf16-64x128x64-ws-stages") +
@@ -237,6 +276,13 @@ char const *name() {
   default: throw std::runtime_error("BARE_GEMM_STAGES must be in 0..4");
   }
 }
+char const *name() {
+  static std::string result = std::string(implementation_name()) +
+      ((std::getenv("BARE_GEMM_STABLE_LONG_K") &&
+        std::string(std::getenv("BARE_GEMM_STABLE_LONG_K")) == "1")
+           ? "-experimental-segment256-k16384" : "");
+  return result.c_str();
+}
 void *prepare(Problem p, Buffers b, cudaStream_t) {
   if (p.m <= 0 || p.n <= 0 || p.k <= 0 || p.k % 8 || p.n % 8 ||
       !b.a || !b.b || !b.d)
@@ -248,6 +294,8 @@ void *prepare(Problem p, Buffers b, cudaStream_t) {
   c->stages = mode ? std::stoi(mode) : 1;
   char const *specialized = std::getenv("BARE_GEMM_WARP_SPECIALIZED");
   c->specialized = specialized && std::string(specialized) == "1";
+  char const *stable = std::getenv("BARE_GEMM_STABLE_LONG_K");
+  c->stable = stable && std::string(stable) == "1" && p.k >= StableK;
   if (c->stages < 0 || c->stages > 4)
     throw std::runtime_error("BARE_GEMM_STAGES must be 0 (vector), or 1..4 (TMA)");
   if (c->stages) {
@@ -260,8 +308,12 @@ void *prepare(Problem p, Buffers b, cudaStream_t) {
 void launch(void *context, cudaStream_t stream) {
   auto const &c = *static_cast<Context *>(context);
   dim3 grid((c.problem.n + BN - 1) / BN, (c.problem.m + BM - 1) / BM);
-  if (c.stages == 0)
-    vector_gemm<<<grid, 128, 0, stream>>>(c.problem, c.buffers);
+  if (c.stages == 0) {
+    if (c.stable)
+      vector_gemm<true><<<grid, 128, 0, stream>>>(c.problem, c.buffers);
+    else
+      vector_gemm<false><<<grid, 128, 0, stream>>>(c.problem, c.buffers);
+  }
   else
     dispatch(c, grid, stream, false);
   check(cudaGetLastError());

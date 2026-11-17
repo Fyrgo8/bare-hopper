@@ -1,0 +1,447 @@
+{
+  "acceptance_status": "inconclusive_memory_unlocked",
+  "runs": {
+    "old-a": {
+      "timing_status": "fail",
+      "cases": {
+        "long32768": {
+          "status": "fail",
+          "rounds": 30,
+          "reference_median_ms": 0.5912017822,
+          "candidate_median_ms": 0.6610815823,
+          "paired_median_ratio": 1.1181974347624937,
+          "bootstrap_95pct_interval": [
+            1.11815707121991,
+            1.1182353116739194
+          ],
+          "max_relative_mad": 4.3818873155228106e-05,
+          "limit": 1.03,
+          "speedup_reference_over_candidate": 0.8942964533024538,
+          "speedup_95pct_interval": [
+            0.8942661616570402,
+            0.8943287358626631
+          ]
+        },
+        "long65536": {
+          "status": "fail",
+          "rounds": 30,
+          "reference_median_ms": 1.177262485,
+          "candidate_median_ms": 1.3189573285,
+          "paired_median_ratio": 1.1203513736945967,
+          "bootstrap_95pct_interval": [
+            1.1203303720946003,
+            1.120377901596524
+          ],
+          "max_relative_mad": 3.136189405544588e-05,
+          "limit": 1.03,
+          "speedup_reference_over_candidate": 0.8925771177503782,
+          "speedup_95pct_interval": [
+            0.8925559836328554,
+            0.8925938499108729
+          ]
+        },
+        "large_long": {
+          "status": "fail",
+          "rounds": 30,
+          "reference_median_ms": 0.30092349645000005,
+          "candidate_median_ms": 0.3239185065,
+          "paired_median_ratio": 1.0764798870121677,
+          "bootstrap_95pct_interval": [
+            1.0762534917399629,
+            1.0765498120538761
+          ],
+          "max_relative_mad": 0.00016809428577678243,
+          "limit": 1.03,
+          "speedup_reference_over_candidate": 0.9289537241383654,
+          "speedup_95pct_interval": [
+            0.9288933858918874,
+            0.929149134172206
+          ]
+        }
+      },
+      "measured_sm_mhz": [
+        "1800"
+      ],
+      "measured_mem_mhz": [
+        "2619"
+      ],
+      "clock_reason_masks": [
+        "0x0000000000000000"
+      ]
+    },
+    "stable-formal": {
+      "timing_status": "pass",
+      "cases": {
+        "square": {
+          "status": "pass",
+          "rounds": 30,
+          "reference_median_ms": 1.0515603420000001,
+          "candidate_median_ms": 1.009943843,
+          "paired_median_ratio": 0.9603751823502252,
+          "bootstrap_95pct_interval": [
+            0.9583080858401493,
+            0.9605918999169714
+          ],
+          "max_relative_mad": 0.00022440414551134195,
+          "limit": 1.03,
+          "speedup_reference_over_candidate": 1.041259726800525,
+          "speedup_95pct_interval": [
+            1.0410248098973507,
+            1.0435057522480355
+          ]
+        },
+        "small_m": {
+          "status": "pass",
+          "rounds": 30,
+          "reference_median_ms": 0.3046064079,
+          "candidate_median_ms": 0.27811005715,
+          "paired_median_ratio": 0.9130355286056535,
+          "bootstrap_95pct_interval": [
+            0.9127700696775356,
+            0.9132360908052526
+          ],
+          "max_relative_mad": 0.00025893037032207145,
+          "limit": 1.03,
+          "speedup_reference_over_candidate": 1.095247631302097,
+          "speedup_95pct_interval": [
+            1.09500709626822,
+            1.0955661597813797
+          ]
+        },
+        "short_k": {
+          "status": "pass",
+          "rounds": 30,
+          "reference_median_ms": 0.2786182761,
+          "candidate_median_ms": 0.2776787132,
+          "paired_median_ratio": 0.996654187016477,
+          "bootstrap_95pct_interval": [
+            0.9965458705938954,
+            0.9967828185628498
+          ],
+          "max_relative_mad": 0.0001725811080285081,
+          "limit": 1.03,
+          "speedup_reference_over_candidate": 1.003357045028365,
+          "speedup_95pct_interval": [
+            1.003227565099676,
+            1.0034661017701534
+          ]
+        },
+        "m_tail": {
+          "status": "pass",
+          "rounds": 30,
+          "reference_median_ms": 0.97905007005,
+          "candidate_median_ms": 0.99459835885,
+          "paired_median_ratio": 1.0155543625448638,
+          "bootstrap_95pct_interval": [
+            1.0154100026220547,
+            1.0165975847841515
+          ],
+          "max_relative_mad": 0.0008229960794892769,
+          "limit": 1.03,
+          "speedup_reference_over_candidate": 0.9846838700925017,
+          "speedup_95pct_interval": [
+            0.9836733973869556,
+            0.9848238617088052
+          ]
+        },
+        "mn_tail": {
+          "status": "pass",
+          "rounds": 30,
+          "reference_median_ms": 1.0560315845,
+          "candidate_median_ms": 1.009871244,
+          "paired_median_ratio": 0.9562911213080016,
+          "bootstrap_95pct_interval": [
+            0.9561932483977674,
+            0.9563759699142589
+          ],
+          "max_relative_mad": 0.00011847183534682276,
+          "limit": 1.03,
+          "speedup_reference_over_candidate": 1.0457066658029972,
+          "speedup_95pct_interval": [
+            1.0456138918773252,
+            1.0458137010229227
+          ]
+        }
+      },
+      "measured_sm_mhz": [
+        "1800"
+      ],
+      "measured_mem_mhz": [
+        "2619"
+      ],
+      "clock_reason_masks": [
+        "0x0000000000000000"
+      ]
+    },
+    "stable-long": {
+      "timing_status": "fail",
+      "cases": {
+        "long32768": {
+          "status": "fail",
+          "rounds": 30,
+          "reference_median_ms": 0.59118035435,
+          "candidate_median_ms": 0.6965075135000001,
+          "paired_median_ratio": 1.1781591430607308,
+          "bootstrap_95pct_interval": [
+            1.1780812517874355,
+            1.1782001123661128
+          ],
+          "max_relative_mad": 7.637699374224659e-05,
+          "limit": 1.03,
+          "speedup_reference_over_candidate": 0.8487817676329427,
+          "speedup_95pct_interval": [
+            0.8487522531225672,
+            0.8488378865912322
+          ]
+        },
+        "long65536": {
+          "status": "fail",
+          "rounds": 30,
+          "reference_median_ms": 1.177278817,
+          "candidate_median_ms": 1.3899805545000001,
+          "paired_median_ratio": 1.1806423173807656,
+          "bootstrap_95pct_interval": [
+            1.1806209340770886,
+            1.1806838868273783
+          ],
+          "max_relative_mad": 6.1020637825125536e-05,
+          "limit": 1.03,
+          "speedup_reference_over_candidate": 0.846996575744026,
+          "speedup_95pct_interval": [
+            0.846966754740005,
+            0.8470119164723409
+          ]
+        },
+        "large_long": {
+          "status": "fail",
+          "rounds": 30,
+          "reference_median_ms": 0.30095276235,
+          "candidate_median_ms": 0.33841906489999996,
+          "paired_median_ratio": 1.1244789969378801,
+          "bootstrap_95pct_interval": [
+            1.1242896597067429,
+            1.1246250037964252
+          ],
+          "max_relative_mad": 0.00019677762545581914,
+          "limit": 1.03,
+          "speedup_reference_over_candidate": 0.889300736361591,
+          "speedup_95pct_interval": [
+            0.8891852809819047,
+            0.889450500025801
+          ]
+        }
+      },
+      "measured_sm_mhz": [
+        "1800"
+      ],
+      "measured_mem_mhz": [
+        "2619"
+      ],
+      "clock_reason_masks": [
+        "0x0000000000000000"
+      ]
+    },
+    "old-b": {
+      "timing_status": "fail",
+      "cases": {
+        "long32768": {
+          "status": "fail",
+          "rounds": 30,
+          "reference_median_ms": 0.5913032889000001,
+          "candidate_median_ms": 0.66125041245,
+          "paired_median_ratio": 1.1182942762228518,
+          "bootstrap_95pct_interval": [
+            1.1182521340328786,
+            1.1183271214212445
+          ],
+          "max_relative_mad": 3.939090170618795e-05,
+          "limit": 1.03,
+          "speedup_reference_over_candidate": 0.894219009487912,
+          "speedup_95pct_interval": [
+            0.8941927463309067,
+            0.8942527088176325
+          ]
+        },
+        "long65536": {
+          "status": "fail",
+          "rounds": 30,
+          "reference_median_ms": 1.177417874,
+          "candidate_median_ms": 1.3192312125,
+          "paired_median_ratio": 1.120435372489934,
+          "bootstrap_95pct_interval": [
+            1.120414741542944,
+            1.1204547886773568
+          ],
+          "max_relative_mad": 1.856952728814172e-05,
+          "limit": 1.03,
+          "speedup_reference_over_candidate": 0.8925102014386679,
+          "speedup_95pct_interval": [
+            0.8924947352676783,
+            0.892526635826731
+          ]
+        },
+        "large_long": {
+          "status": "fail",
+          "rounds": 30,
+          "reference_median_ms": 0.3010184467,
+          "candidate_median_ms": 0.32405033704999997,
+          "paired_median_ratio": 1.076521807324481,
+          "bootstrap_95pct_interval": [
+            1.0764092068183169,
+            1.0766858443256595
+          ],
+          "max_relative_mad": 0.0002818824409550903,
+          "limit": 1.03,
+          "speedup_reference_over_candidate": 0.9289175502030343,
+          "speedup_95pct_interval": [
+            0.9287760262384719,
+            0.9290147219716101
+          ]
+        }
+      },
+      "measured_sm_mhz": [
+        "1800"
+      ],
+      "measured_mem_mhz": [
+        "2619"
+      ],
+      "clock_reason_masks": [
+        "0x0000000000000000"
+      ]
+    },
+    "formal-repeat": {
+      "timing_status": "pass",
+      "cases": {
+        "square": {
+          "status": "pass",
+          "rounds": 30,
+          "reference_median_ms": 1.0537176725,
+          "candidate_median_ms": 1.0097237825,
+          "paired_median_ratio": 0.9582309357270398,
+          "bootstrap_95pct_interval": [
+            0.9581879727909804,
+            0.9582833176277783
+          ],
+          "max_relative_mad": 0.00017112996939837023,
+          "limit": 1.03,
+          "speedup_reference_over_candidate": 1.0435897680983017,
+          "speedup_95pct_interval": [
+            1.0435327231569584,
+            1.0436365602536533
+          ]
+        },
+        "small_m": {
+          "status": "pass",
+          "rounds": 30,
+          "reference_median_ms": 0.30508378145,
+          "candidate_median_ms": 0.2769765258,
+          "paired_median_ratio": 0.907874769670714,
+          "bootstrap_95pct_interval": [
+            0.907687573356028,
+            0.907983046212593
+          ],
+          "max_relative_mad": 0.00036583295077030034,
+          "limit": 1.03,
+          "speedup_reference_over_candidate": 1.101473499877852,
+          "speedup_95pct_interval": [
+            1.1013421496923659,
+            1.1017006614981648
+          ]
+        },
+        "short_k": {
+          "status": "pass",
+          "rounds": 30,
+          "reference_median_ms": 0.27997472884999997,
+          "candidate_median_ms": 0.27515833079999996,
+          "paired_median_ratio": 0.9827961203784974,
+          "bootstrap_95pct_interval": [
+            0.9826082357050095,
+            0.9829059350691114
+          ],
+          "max_relative_mad": 0.00029224869807388727,
+          "limit": 1.03,
+          "speedup_reference_over_candidate": 1.0175050341212957,
+          "speedup_95pct_interval": [
+            1.01739135386306,
+            1.017699591417033
+          ]
+        },
+        "m_tail": {
+          "status": "pass",
+          "rounds": 30,
+          "reference_median_ms": 0.9811604917000001,
+          "candidate_median_ms": 0.9989494382999999,
+          "paired_median_ratio": 1.0181658393703978,
+          "bootstrap_95pct_interval": [
+            1.017798469121705,
+            1.018399985275282
+          ],
+          "max_relative_mad": 0.0004653156427926578,
+          "limit": 1.03,
+          "speedup_reference_over_candidate": 0.9821582706196164,
+          "speedup_95pct_interval": [
+            0.9819324572453637,
+            0.9825127766825352
+          ]
+        },
+        "mn_tail": {
+          "status": "pass",
+          "rounds": 30,
+          "reference_median_ms": 1.057544649,
+          "candidate_median_ms": 1.009877443,
+          "paired_median_ratio": 0.9548956147477214,
+          "bootstrap_95pct_interval": [
+            0.9548332921992994,
+            0.95499259580449
+          ],
+          "max_relative_mad": 8.668381054807134e-05,
+          "limit": 1.03,
+          "speedup_reference_over_candidate": 1.047234885735856,
+          "speedup_95pct_interval": [
+            1.0471285373239942,
+            1.047303239392362
+          ]
+        }
+      },
+      "sm_mhz": [
+        "1800"
+      ],
+      "mem_mhz": [
+        "2619"
+      ],
+      "clock_masks": [
+        "0x0000000000000000"
+      ]
+    }
+  },
+  "long_k_on_off": {
+    "long32768": {
+      "old_a_ms": 0.6610815823,
+      "old_b_ms": 0.66125041245,
+      "stable_ms": 0.6965075135000001,
+      "old_median_over_stable": 0.9492589592502652,
+      "old_drift_fraction": 0.00025535213648360695
+    },
+    "long65536": {
+      "old_a_ms": 1.3189573285,
+      "old_b_ms": 1.3192312125,
+      "stable_ms": 1.3899805545000001,
+      "old_median_over_stable": 0.949001959940728,
+      "old_drift_fraction": 0.00020763034615884
+    },
+    "large_long": {
+      "old_a_ms": 0.3239185065,
+      "old_b_ms": 0.32405033704999997,
+      "stable_ms": 0.33841906489999996,
+      "old_median_over_stable": 0.9573468382188655,
+      "old_drift_fraction": 0.0004069039779065144
+    }
+  },
+  "notes": [
+    "On/off uses separate runs; old-a and old-b bracket stable runs. These are not paired on/off samples.",
+    "Timing inputs are dyadic; logscale numerical failures are documented separately."
+  ],
+  "excluded_runs": {
+    "stable-formal": "Two external compute pids observed; replaced by formal-repeat"
+  }
+}

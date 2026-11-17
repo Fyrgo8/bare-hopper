@@ -1,0 +1,3 @@
+case,m,n,k,pattern,seed,repeats,oracle,reference_ok,candidate_ok,reference_max_scaled_error,candidate_max_scaled_error
+segment_tail,65,136,16648,logscale,17,3,fp64,1,1,0.5459942342,0.3844150796
+long_k,1,8,65536,logscale,17,3,fp64,1,1,0.3755338808,0.3735222554

@@ -1,0 +1,28 @@
+{
+  "host": "qjh004",
+  "address": "124.174.78.73",
+  "driver": "580.126.20",
+  "coverage_binary_sha256": "49dd7aeee3bc69d70899ccbc8a7b2c747878566fa4909feb63f6544f4f229b30",
+  "native_binary_sha256": "b101c10ba26d036337324a50de658418df4a8dd4f712415cdc08eb1f76677a38",
+  "source_hashes": {
+    "src/candidate.cu": "d2d87b89ec78e1382addb2021e26ce8aa9202f91cb3dd5e713519edaf3df5294",
+    "src/gemm_bench.cu": "7858f700424a8656d0c59da6d4d686d80b9790f3dbfa2e3e1662400ae32e42ec",
+    "src/reference.cu": "3015f86c46f1525cc1e86bf6dae0b28bf59b1e8f0acde2312ef1918af6b865b1",
+    "include/candidate.hpp": "45365e6c48b81204e372ae8dc41c9f7c6b5db353740be777d653861723870ba8",
+    "include/gemm.hpp": "470e934b0e49aebe1e3c2b3380bf7ce09478fe0a94a9e57ab8ecbce4ce62bf7a",
+    "include/hopper_ptx.cuh": "a1f95b9cab78a67a65c38883c008d9d5c0ffebc5b1137173c4bfeca115de0c37",
+    "scripts/analyze.py": "931085aca3053bf898923c5ce3a991d3a93b2be5411926da32d9786b7b3790ef",
+    "scripts/check_gemm_sanitizers.sh": "145b36a597feb79b75afc313969831aa75f2bea2fa5809a0d1d13befccec53c0",
+    "scripts/run_bench.py": "20809fbbe5cab8bc43a9d8e5efd4feca8fcbeef193e24f2c0990cdfc6d5336a2",
+    "scripts/run_coverage.py": "0b88ed5faf1d15fec8698d6058cc756db98760911402d1bfb361c59082312ff5",
+    "scripts/setup_cutlass.sh": "7f831964cb116cc286539e81c130ee4846e0d932b5c5113d9c4a55a163b9af4b",
+    "scripts/validate_h20.sh": "3d6c4f873d9220b3ba94393737e68f2fbf092ddee82b8e83a58609880a4f6699"
+  },
+  "clock_probe": {
+    "command": "sudo -n nvidia-smi -i 1 -lmc 2619,2619",
+    "result": "This option is not supported. Please use --lock-memory-clocks-deferred instead.",
+    "monitor_stopped": false,
+    "gpu_reset": false,
+    "performance_acceptance": "not_run"
+  }
+}

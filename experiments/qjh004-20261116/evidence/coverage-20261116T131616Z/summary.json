@@ -1,0 +1,55 @@
+{
+  "checks": 3024,
+  "candidate_failed": 0,
+  "reference_failed": 126,
+  "candidate_max_scaled_error": 0.6149215353,
+  "reference_max_scaled_error": 4.254370641,
+  "candidate_launches": 9072,
+  "by_mode": {
+    "s1-ws0": {
+      "checks": 336,
+      "candidate_failed": 0,
+      "reference_failed": 14
+    },
+    "s0-ws0": {
+      "checks": 336,
+      "candidate_failed": 0,
+      "reference_failed": 14
+    },
+    "s2-ws0": {
+      "checks": 336,
+      "candidate_failed": 0,
+      "reference_failed": 14
+    },
+    "s3-ws0": {
+      "checks": 336,
+      "candidate_failed": 0,
+      "reference_failed": 14
+    },
+    "s4-ws0": {
+      "checks": 336,
+      "candidate_failed": 0,
+      "reference_failed": 14
+    },
+    "s1-ws1": {
+      "checks": 336,
+      "candidate_failed": 0,
+      "reference_failed": 14
+    },
+    "s2-ws1": {
+      "checks": 336,
+      "candidate_failed": 0,
+      "reference_failed": 14
+    },
+    "s3-ws1": {
+      "checks": 336,
+      "candidate_failed": 0,
+      "reference_failed": 14
+    },
+    "s4-ws1": {
+      "checks": 336,
+      "candidate_failed": 0,
+      "reference_failed": 14
+    }
+  }
+}

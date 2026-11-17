@@ -1,0 +1,42 @@
+{
+  "gpu": 2,
+  "binary_sha256": "b101c10ba26d036337324a50de658418df4a8dd4f712415cdc08eb1f76677a38",
+  "jobs": [
+    {
+      "label": "s0-ws0",
+      "exit_code": 0
+    },
+    {
+      "label": "s1-ws0",
+      "exit_code": 0
+    },
+    {
+      "label": "s2-ws0",
+      "exit_code": 0
+    },
+    {
+      "label": "s3-ws0",
+      "exit_code": 0
+    },
+    {
+      "label": "s4-ws0",
+      "exit_code": 0
+    },
+    {
+      "label": "s1-ws1",
+      "exit_code": 0
+    },
+    {
+      "label": "s2-ws1",
+      "exit_code": 0
+    },
+    {
+      "label": "s3-ws1",
+      "exit_code": 0
+    },
+    {
+      "label": "s4-ws1",
+      "exit_code": 0
+    }
+  ]
+}

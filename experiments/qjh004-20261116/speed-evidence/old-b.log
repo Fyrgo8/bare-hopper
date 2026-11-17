@@ -1,0 +1,6 @@
+long32768: ring=20, iterations=80
+long32768: calibrated iterations=440
+long65536: ring=10, iterations=70
+long65536: calibrated iterations=220
+large_long: ring=4, iterations=64
+large_long: calibrated iterations=832

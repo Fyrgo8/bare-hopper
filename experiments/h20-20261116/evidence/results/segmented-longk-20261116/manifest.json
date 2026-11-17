@@ -1,0 +1,15 @@
+{
+  "status": "blocked_gpu_busy",
+  "candidate": "experimental_segment256_k16384",
+  "opt_in": "BARE_GEMM_STABLE_LONG_K=1",
+  "build": "pass",
+  "zero_spills": true,
+  "register_range": [
+    90,
+    168
+  ],
+  "gpu_validation": "not_run",
+  "binary_sha256": "49dd7aeee3bc69d70899ccbc8a7b2c747878566fa4909feb63f6544f4f229b30",
+  "compute_apps": "gpu_uuid, pid, process_name\nGPU-d1b595ce-0b57-cdee-c1c0-9b1051aaa07e, 1223411, /usr/bin/python3\nGPU-d1b595ce-0b57-cdee-c1c0-9b1051aaa07e, 1224309, /usr/bin/python3\nGPU-d1b595ce-0b57-cdee-c1c0-9b1051aaa07e, 1225781, /usr/bin/python3\nGPU-d1b595ce-0b57-cdee-c1c0-9b1051aaa07e, 1225780, /usr/bin/python3\nGPU-d1b595ce-0b57-cdee-c1c0-9b1051aaa07e, 1226528, /usr/bin/python3\nGPU-d1b595ce-0b57-cdee-c1c0-9b1051aaa07e, 1226527, /usr/bin/python3\nGPU-54dd3d98-9c22-b235-34ba-f02a9edcbb9d, 1223506, /usr/bin/python3\nGPU-54dd3d98-9c22-b235-34ba-f02a9edcbb9d, 1224310, /usr/bin/python3\nGPU-54dd3d98-9c22-b235-34ba-f02a9edcbb9d, 1225723, /usr/bin/python3\nGPU-54dd3d98-9c22-b235-34ba-f02a9edcbb9d, 1225724, /usr/bin/python3\nGPU-02967d7d-61eb-a053-5cfe-a964f8d35832, 1223576, /usr/bin/python3\nGPU-02967d7d-61eb-a053-5cfe-a964f8d35832, 1224311, /usr/bin/python3\nGPU-02967d7d-61eb-a053-5cfe-a964f8d35832, 1225726, /usr/bin/python3\nGPU-02967d7d-61eb-a053-5cfe-a964f8d35832, 1225725, /usr/bin/python3\nGPU-02967d7d-61eb-a053-5cfe-a964f8d35832, 1226346, /usr/bin/python3\nGPU-02967d7d-61eb-a053-5cfe-a964f8d35832, 1226347, /usr/bin/python3\nGPU-85623b28-eeb5-49da-fe12-fc36d8717707, 1223640, /usr/bin/python3\nGPU-85623b28-eeb5-49da-fe12-fc36d8717707, 1224312, /usr/bin/python3\nGPU-85623b28-eeb5-49da-fe12-fc36d8717707, 1225778, /usr/bin/python3\nGPU-85623b28-eeb5-49da-fe12-fc36d8717707, 1225779, /usr/bin/python3\nGPU-79214c80-7778-37d9-282b-89228debbb69, 1223715, /usr/bin/python3\nGPU-79214c80-7778-37d9-282b-89228debbb69, 1224313, /usr/bin/python3\nGPU-79214c80-7778-37d9-282b-89228debbb69, 1225938, /usr/bin/python3\nGPU-79214c80-7778-37d9-282b-89228debbb69, 1225937, /usr/bin/python3\nGPU-c883a2aa-a00c-c302-c3ad-12421ef80a71, 1223788, /usr/bin/python3\nGPU-c883a2aa-a00c-c302-c3ad-12421ef80a71, 1224314, /usr/bin/python3\nGPU-c883a2aa-a00c-c302-c3ad-12421ef80a71, 1225876, /usr/bin/python3\nGPU-c883a2aa-a00c-c302-c3ad-12421ef80a71, 1225875, /usr/bin/python3\nGPU-5123aa0b-e69a-7246-26f1-446b3469f2eb, 1223858, /usr/bin/python3\nGPU-5123aa0b-e69a-7246-26f1-446b3469f2eb, 1224319, /usr/bin/python3\nGPU-5123aa0b-e69a-7246-26f1-446b3469f2eb, 1225900, /usr/bin/python3\nGPU-5123aa0b-e69a-7246-26f1-446b3469f2eb, 1225901, /usr/bin/python3\nGPU-79d355f1-7a2e-b618-0bce-79256b298f37, 1223927, /usr/bin/python3\nGPU-79d355f1-7a2e-b618-0bce-79256b298f37, 1224339, /usr/bin/python3\nGPU-79d355f1-7a2e-b618-0bce-79256b298f37, 1225902, /usr/bin/python3\nGPU-79d355f1-7a2e-b618-0bce-79256b298f37, 1225903, /usr/bin/python3\n",
+  "monitor": "active"
+}

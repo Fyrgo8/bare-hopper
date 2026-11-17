@@ -1,0 +1,12 @@
+========= COMPUTE-SANITIZER
+segment_tail: ring=1, iterations=64
+segment_tail: fp32_oracle_max_abs_error=0.000695096
+segment_tail: fp32_oracle_max_abs_error=0.000721894
+segment_tail: fp32_oracle_max_abs_error=0.000767554
+segment_tail: validation passed, reference_max_scaled_error=0.545994, candidate_max_scaled_error=0.384415
+long_k: ring=1, iterations=64
+long_k: fp32_oracle_max_abs_error=0.000129929
+long_k: fp32_oracle_max_abs_error=0.000126922
+long_k: fp32_oracle_max_abs_error=0.000158472
+long_k: validation passed, reference_max_scaled_error=0.375534, candidate_max_scaled_error=0.373522
+========= RACECHECK SUMMARY: 0 hazards displayed (0 errors, 0 warnings)
