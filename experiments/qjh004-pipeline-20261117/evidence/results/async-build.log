@@ -1,0 +1,272 @@
+Consolidate compiler generated dependencies of target bare_candidate
+[ 25%] Building CUDA object CMakeFiles/bare_candidate.dir/src/candidate.cu.o
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 44661 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb0ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 44798 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb0ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 44949 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb0ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 43503 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb0ELb1ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 42003 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb0ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 42140 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb0ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 42292 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb0ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 40624 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb0ELb0ELb0ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 40792 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb0ELb0ELb0ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 40955 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb0ELb0ELb0ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7515) Potential Performance Loss: wgmma.mma_async instructions are serialized due to non wgmma instructions defining accumulator registers of a wgmma between start and end of the pipeline stage in the function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb0ELb0ELb0ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 39436 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb0ELb1ELb0ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7515) Potential Performance Loss: wgmma.mma_async instructions are serialized due to non wgmma instructions defining accumulator registers of a wgmma between start and end of the pipeline stage in the function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb0ELb1ELb0ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 37860 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb0ELb0ELb1ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 38028 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb0ELb0ELb1ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 38191 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb0ELb0ELb1ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7515) Potential Performance Loss: wgmma.mma_async instructions are serialized due to non wgmma instructions defining accumulator registers of a wgmma between start and end of the pipeline stage in the function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb0ELb0ELb1ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7520) Potential Performance Loss: wgmma.mma_async instructions are serialized due to program dependence on compiler-inserted WG.AR in divergent path in the function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb1ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7520) Potential Performance Loss: wgmma.mma_async instructions are serialized due to program dependence on compiler-inserted WG.AR in divergent path in the function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb1ELb1ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7520) Potential Performance Loss: wgmma.mma_async instructions are serialized due to program dependence on compiler-inserted WG.AR in divergent path in the function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb1ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 32671 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb0ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 32810 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb0ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 32963 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb0ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 31549 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb0ELb1ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 30065 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb0ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 30207 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb0ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 30364 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb0ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 28720 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb0ELb0ELb0ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 28892 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb0ELb0ELb0ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 29046 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb0ELb0ELb0ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7515) Potential Performance Loss: wgmma.mma_async instructions are serialized due to non wgmma instructions defining accumulator registers of a wgmma between start and end of the pipeline stage in the function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb0ELb0ELb0ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 27559 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb0ELb1ELb0ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7515) Potential Performance Loss: wgmma.mma_async instructions are serialized due to non wgmma instructions defining accumulator registers of a wgmma between start and end of the pipeline stage in the function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb0ELb1ELb0ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 26015 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb0ELb0ELb1ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 26187 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb0ELb0ELb1ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 26341 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb0ELb0ELb1ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7515) Potential Performance Loss: wgmma.mma_async instructions are serialized due to non wgmma instructions defining accumulator registers of a wgmma between start and end of the pipeline stage in the function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb0ELb0ELb1ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7520) Potential Performance Loss: wgmma.mma_async instructions are serialized due to program dependence on compiler-inserted WG.AR in divergent path in the function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb1ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7520) Potential Performance Loss: wgmma.mma_async instructions are serialized due to program dependence on compiler-inserted WG.AR in divergent path in the function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb1ELb1ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7520) Potential Performance Loss: wgmma.mma_async instructions are serialized due to program dependence on compiler-inserted WG.AR in divergent path in the function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb1ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 20896 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb0ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 20996 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb0ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 21130 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb0ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 19815 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb0ELb1ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 18425 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb0ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 18528 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb0ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 18666 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb0ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 17189 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb0ELb0ELb0ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 17326 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb0ELb0ELb0ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 17461 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb0ELb0ELb0ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7515) Potential Performance Loss: wgmma.mma_async instructions are serialized due to non wgmma instructions defining accumulator registers of a wgmma between start and end of the pipeline stage in the function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb0ELb0ELb0ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 16079 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb0ELb1ELb0ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7515) Potential Performance Loss: wgmma.mma_async instructions are serialized due to non wgmma instructions defining accumulator registers of a wgmma between start and end of the pipeline stage in the function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb0ELb1ELb0ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 14625 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb0ELb0ELb1ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 14763 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb0ELb0ELb1ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 14899 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb0ELb0ELb1ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7515) Potential Performance Loss: wgmma.mma_async instructions are serialized due to non wgmma instructions defining accumulator registers of a wgmma between start and end of the pipeline stage in the function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb0ELb0ELb1ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7520) Potential Performance Loss: wgmma.mma_async instructions are serialized due to program dependence on compiler-inserted WG.AR in divergent path in the function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb1ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7520) Potential Performance Loss: wgmma.mma_async instructions are serialized due to program dependence on compiler-inserted WG.AR in divergent path in the function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb1ELb1ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7520) Potential Performance Loss: wgmma.mma_async instructions are serialized due to program dependence on compiler-inserted WG.AR in divergent path in the function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb1ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 9762 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb0ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 9858 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb0ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 9929 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb0ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 9998 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb0ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 10099 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb0ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 8335 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb0ELb1ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 8576 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb0ELb1ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 8820 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb0ELb1ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 6909 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb0ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 7007 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb0ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 7081 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb0ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 7153 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb0ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 7256 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb0ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 5955 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb1ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 6005 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb1ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 6053 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb1ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7520) Potential Performance Loss: wgmma.mma_async instructions are serialized due to program dependence on compiler-inserted WG.AR in divergent path in the function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb1ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 4377 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb1ELb1ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 4593 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb1ELb1ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7520) Potential Performance Loss: wgmma.mma_async instructions are serialized due to program dependence on compiler-inserted WG.AR in divergent path in the function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb1ELb1ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 2986 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb1ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 3036 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb1ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 3084 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb1ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7520) Potential Performance Loss: wgmma.mma_async instructions are serialized due to program dependence on compiler-inserted WG.AR in divergent path in the function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb1ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf'
+ptxas info    : (C7520) Potential Performance Loss: wgmma.mma_async instructions are serialized due to program dependence on compiler-inserted WG.AR in divergent path in the function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c11vector_gemmILb0EEEvNS_7ProblemENS_7BuffersE'
+ptxas info    : (C7519) warpgroup.arrive is injected in around line 633 by compiler to allow use of registers in GMMA in function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c11vector_gemmILb1EEEvNS_7ProblemENS_7BuffersE'
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb0ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb0ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 90 registers, used 1 barriers, 1024 bytes smem
+ptxas info    : Compile time = 57.604 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb0ELb1ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb0ELb1ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 136 registers, used 1 barriers, 1024 bytes smem
+ptxas info    : Compile time = 37.826 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb0ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb0ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 90 registers, used 1 barriers, 1024 bytes smem
+ptxas info    : Compile time = 60.287 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb0ELb0ELb0ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb0ELb0ELb0ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 90 registers, used 1 barriers, 1024 bytes smem
+ptxas info    : Compile time = 49.345 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb0ELb1ELb0ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb0ELb1ELb0ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 136 registers, used 1 barriers, 1024 bytes smem
+ptxas info    : Compile time = 35.286 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb0ELb0ELb1ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb0ELb0ELb1ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 90 registers, used 1 barriers, 1024 bytes smem
+ptxas info    : Compile time = 52.251 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb1ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb1ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 90 registers, used 2 barriers, 1024 bytes smem
+ptxas info    : Compile time = 48.095 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb1ELb1ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb1ELb1ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 144 registers, used 2 barriers, 1024 bytes smem
+ptxas info    : Compile time = 35.490 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb1ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi4ELb1ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 90 registers, used 2 barriers, 1024 bytes smem
+ptxas info    : Compile time = 49.111 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb0ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb0ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 90 registers, used 1 barriers, 1024 bytes smem
+ptxas info    : Compile time = 51.718 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb0ELb1ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb0ELb1ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 136 registers, used 1 barriers, 1024 bytes smem
+ptxas info    : Compile time = 36.085 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb0ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb0ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 90 registers, used 1 barriers, 1024 bytes smem
+ptxas info    : Compile time = 56.371 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb0ELb0ELb0ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb0ELb0ELb0ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 90 registers, used 1 barriers, 1024 bytes smem
+ptxas info    : Compile time = 48.760 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb0ELb1ELb0ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb0ELb1ELb0ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 136 registers, used 1 barriers, 1024 bytes smem
+ptxas info    : Compile time = 34.873 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb0ELb0ELb1ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb0ELb0ELb1ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 90 registers, used 1 barriers, 1024 bytes smem
+ptxas info    : Compile time = 51.581 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb1ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb1ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 90 registers, used 2 barriers, 1024 bytes smem
+ptxas info    : Compile time = 47.743 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb1ELb1ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb1ELb1ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 141 registers, used 2 barriers, 1024 bytes smem
+ptxas info    : Compile time = 35.382 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb1ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi3ELb1ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 90 registers, used 2 barriers, 1024 bytes smem
+ptxas info    : Compile time = 51.701 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb0ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb0ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 90 registers, used 1 barriers, 1024 bytes smem
+ptxas info    : Compile time = 50.810 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb0ELb1ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb0ELb1ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 136 registers, used 1 barriers, 1024 bytes smem
+ptxas info    : Compile time = 34.558 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb0ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb0ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 90 registers, used 1 barriers, 1024 bytes smem
+ptxas info    : Compile time = 55.856 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb0ELb0ELb0ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb0ELb0ELb0ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 90 registers, used 1 barriers, 1024 bytes smem
+ptxas info    : Compile time = 48.256 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb0ELb1ELb0ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb0ELb1ELb0ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 136 registers, used 1 barriers, 1024 bytes smem
+ptxas info    : Compile time = 34.070 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb0ELb0ELb1ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb0ELb0ELb1ELb1EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 90 registers, used 1 barriers, 1024 bytes smem
+ptxas info    : Compile time = 52.078 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb1ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb1ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 90 registers, used 2 barriers, 1024 bytes smem
+ptxas info    : Compile time = 45.062 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb1ELb1ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb1ELb1ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 144 registers, used 2 barriers, 1024 bytes smem
+ptxas info    : Compile time = 34.809 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb1ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi2ELb1ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 90 registers, used 2 barriers, 1024 bytes smem
+ptxas info    : Compile time = 49.231 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb0ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb0ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 90 registers, used 1 barriers, 1024 bytes smem
+ptxas info    : Compile time = 74.878 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb0ELb1ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb0ELb1ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 138 registers, used 1 barriers, 1024 bytes smem
+ptxas info    : Compile time = 69.538 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb0ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb0ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 90 registers, used 1 barriers, 1024 bytes smem
+ptxas info    : Compile time = 77.379 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb1ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb1ELb0ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 90 registers, used 2 barriers, 1024 bytes smem
+ptxas info    : Compile time = 67.806 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb1ELb1ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb1ELb1ELb0ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 144 registers, used 2 barriers, 1024 bytes smem
+ptxas info    : Compile time = 67.766 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb1ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c8tma_gemmILi1ELb1ELb0ELb1ELb0EEEvNS_7ProblemENS_7BuffersE14CUtensorMap_stS5_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 90 registers, used 2 barriers, 1024 bytes smem
+ptxas info    : Compile time = 71.162 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c11vector_gemmILb0EEEvNS_7ProblemENS_7BuffersE' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c11vector_gemmILb0EEEvNS_7ProblemENS_7BuffersE
+    16 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 95 registers, used 1 barriers, 16 bytes cumulative stack size, 24576 bytes smem
+ptxas info    : Compile time = 35.855 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c11vector_gemmILb1EEEvNS_7ProblemENS_7BuffersE' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c11vector_gemmILb1EEEvNS_7ProblemENS_7BuffersE
+    16 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 168 registers, used 1 barriers, 16 bytes cumulative stack size, 24576 bytes smem
+ptxas info    : Compile time = 47.248 ms
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c13reduce_splitsENS_7ProblemENS_7BuffersEPKfi' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__5521fd98_12_candidate_cu_a3351f3c13reduce_splitsENS_7ProblemENS_7BuffersEPKfi
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 14 registers, used 0 barriers
+ptxas info    : Compile time = 2.258 ms
+[ 25%] Built target bare_candidate
+[ 50%] Linking CUDA executable gemm_bench
+[100%] Built target gemm_bench

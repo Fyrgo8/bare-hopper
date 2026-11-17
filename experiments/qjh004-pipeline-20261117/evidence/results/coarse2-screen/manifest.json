@@ -1,0 +1,35 @@
+{
+  "acceptance_status": "inconclusive_memory_unlocked",
+  "binary_sha256": "0b62aa6bf01ddc01450fc3abcc3374cda042e0e4fb3a5beba5e1df38c4820c43",
+  "split": "1",
+  "jobs": [
+    {
+      "mode": "sauto-ws0",
+      "argv": [
+        "/home/fengyunhao/bare-hopper-qjh004-20261116/results/coarse2-screen/gemm_bench",
+        "--compare",
+        "--cache",
+        "rotating",
+        "--cases",
+        "/home/fengyunhao/bare-hopper-qjh004-20261116/results/coarse2-screen/cases.csv",
+        "--rounds",
+        "20",
+        "--warmup",
+        "32",
+        "--output",
+        "/home/fengyunhao/bare-hopper-qjh004-20261116/results/coarse2-screen/sauto-ws0.csv"
+      ],
+      "exit_code": 0,
+      "external_pids": [],
+      "cases": {
+        "large_long": {
+          "candidate_ms": 0.34204870460000003,
+          "reference_ms": 0.30075997109999997,
+          "speedup": 0.8792794826071105,
+          "rounds": 20,
+          "valid": true
+        }
+      }
+    }
+  ]
+}

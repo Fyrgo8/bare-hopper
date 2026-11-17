@@ -1,0 +1,129 @@
+{
+  "timing_status": "pass",
+  "cases": {
+    "square": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 1.05371207,
+      "candidate_median_ms": 1.004401088,
+      "paired_median_ratio": 0.9531922312326226,
+      "bootstrap_95pct_interval": [
+        0.953139190649019,
+        0.9532302168674588
+      ],
+      "max_relative_mad": 7.404536990830596e-05,
+      "limit": 1.03,
+      "speedup": 1.0491063263355052
+    },
+    "small_m": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 0.30488179625,
+      "candidate_median_ms": 0.2715564817,
+      "paired_median_ratio": 0.8906531435565401,
+      "bootstrap_95pct_interval": [
+        0.8904836016904192,
+        0.8907997069522136
+      ],
+      "max_relative_mad": 0.00019589182015660055,
+      "limit": 1.03,
+      "speedup": 1.1227715382071386
+    },
+    "short_k": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 0.27983820435,
+      "candidate_median_ms": 0.2555363327,
+      "paired_median_ratio": 0.9131480099171895,
+      "bootstrap_95pct_interval": [
+        0.9130548179004813,
+        0.9131914433732518
+      ],
+      "max_relative_mad": 0.0001638478924152128,
+      "limit": 1.03,
+      "speedup": 1.0951127190111127
+    },
+    "m_tail": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 0.9809522926500001,
+      "candidate_median_ms": 0.98059237005,
+      "paired_median_ratio": 0.9996621112831403,
+      "bootstrap_95pct_interval": [
+        0.9992666918380022,
+        1.0000853296813141
+      ],
+      "max_relative_mad": 0.0007165256139655453,
+      "limit": 1.03,
+      "speedup": 1.0003380029242341
+    },
+    "mn_tail": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 1.057400346,
+      "candidate_median_ms": 1.0087013245,
+      "paired_median_ratio": 0.9539371101685221,
+      "bootstrap_95pct_interval": [
+        0.9537714157226576,
+        0.9540326913909191
+      ],
+      "max_relative_mad": 0.00011769856182738748,
+      "limit": 1.03,
+      "speedup": 1.048287134802147
+    },
+    "long32768": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 0.59128034115,
+      "candidate_median_ms": 0.056900691239999995,
+      "paired_median_ratio": 0.09623306570166074,
+      "bootstrap_95pct_interval": [
+        0.09621718535069071,
+        0.09625520869015596
+      ],
+      "max_relative_mad": 0.00073110385996085,
+      "limit": 1.03,
+      "speedup": 10.391438667247431
+    },
+    "long65536": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 1.1772493124999999,
+      "candidate_median_ms": 0.1023577414,
+      "paired_median_ratio": 0.08694821062988378,
+      "bootstrap_95pct_interval": [
+        0.08690563917345145,
+        0.08698016612987249
+      ],
+      "max_relative_mad": 0.0005414827373282347,
+      "limit": 1.03,
+      "speedup": 11.501099249261648
+    },
+    "large_long": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 0.30074433985,
+      "candidate_median_ms": 0.3044684231,
+      "paired_median_ratio": 1.0123781784466859,
+      "bootstrap_95pct_interval": [
+        1.0123600098500956,
+        1.012412323286259
+      ],
+      "max_relative_mad": 4.9088341732877905e-05,
+      "limit": 1.03,
+      "speedup": 0.9877731674682301
+    }
+  },
+  "sm_mhz": [
+    "1800"
+  ],
+  "memory_mhz": [
+    "2619"
+  ],
+  "clock_reason_masks": [
+    "0x0000000000000000"
+  ],
+  "external_pids": [],
+  "binary_sha256": "82e1605ecbdf1f2c38768e9bd295f90b3997d04580c81837e65c08c0e80dc349",
+  "acceptance_status": "inconclusive_memory_unlocked"
+}

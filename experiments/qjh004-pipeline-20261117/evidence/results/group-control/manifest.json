@@ -1,0 +1,84 @@
+{
+  "acceptance_status": "inconclusive_memory_unlocked",
+  "binary_sha256": "019c9455781dc1a88d1b4ee2635ae2571164b7190786b0a0da72646be83a2176",
+  "split": "1",
+  "jobs": [
+    {
+      "mode": "sauto-ws0",
+      "argv": [
+        "/home/fengyunhao/bare-hopper-qjh004-20261116/results/group-control/gemm_bench",
+        "--compare",
+        "--cache",
+        "rotating",
+        "--cases",
+        "/home/fengyunhao/bare-hopper-qjh004-20261116/results/group-control/cases.csv",
+        "--rounds",
+        "30",
+        "--warmup",
+        "32",
+        "--output",
+        "/home/fengyunhao/bare-hopper-qjh004-20261116/results/group-control/sauto-ws0.csv"
+      ],
+      "exit_code": 0,
+      "external_pids": [],
+      "cases": {
+        "square": {
+          "candidate_ms": 1.0079817174999999,
+          "reference_ms": 1.0513934495,
+          "speedup": 1.042934221341144,
+          "rounds": 30,
+          "valid": true
+        },
+        "small_m": {
+          "candidate_ms": 0.27458511295,
+          "reference_ms": 0.3045539409,
+          "speedup": 1.1110917736637291,
+          "rounds": 30,
+          "valid": true
+        },
+        "short_k": {
+          "candidate_ms": 0.25529044865,
+          "reference_ms": 0.27880379555,
+          "speedup": 1.0916517561080181,
+          "rounds": 30,
+          "valid": true
+        },
+        "m_tail": {
+          "candidate_ms": 0.98248022795,
+          "reference_ms": 0.978867203,
+          "speedup": 0.9966117981392328,
+          "rounds": 30,
+          "valid": true
+        },
+        "mn_tail": {
+          "candidate_ms": 1.0085394380000001,
+          "reference_ms": 1.0556272865,
+          "speedup": 1.0467415498096058,
+          "rounds": 30,
+          "valid": true
+        },
+        "long32768": {
+          "candidate_ms": 0.056643674155,
+          "reference_ms": 0.5911474824,
+          "speedup": 10.4364809178938,
+          "rounds": 30,
+          "valid": true
+        },
+        "long65536": {
+          "candidate_ms": 0.10198428855,
+          "reference_ms": 1.177085519,
+          "speedup": 11.54201762345311,
+          "rounds": 30,
+          "valid": true
+        },
+        "large_long": {
+          "candidate_ms": 0.32004518805000004,
+          "reference_ms": 0.30059465765,
+          "speedup": 0.9392402173316395,
+          "rounds": 30,
+          "valid": true
+        }
+      }
+    }
+  ]
+}

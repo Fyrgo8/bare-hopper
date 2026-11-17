@@ -62,12 +62,13 @@ __device__ void load(__nv_bfloat16 *dst, __nv_bfloat16 const *src,
   }
 }
 
-__device__ void store(float const (&acc)[64], Problem p, Buffers b) {
+__device__ void store(float const (&acc)[64], Problem p, Buffers b,
+                     int tile_m, int tile_n) {
   int lane = threadIdx.x % 32, warp = threadIdx.x / 32;
 #pragma unroll
   for (int i = 0; i < 64; i += 2) {
-    int row = int(blockIdx.y) * BM + warp * 16 + lane / 4 + (i % 4) / 2 * 8;
-    int col = int(blockIdx.x) * BN + (i / 4) * 8 + (lane % 4) * 2 + i % 2;
+    int row = tile_m * BM + warp * 16 + lane / 4 + (i % 4) / 2 * 8;
+    int col = tile_n * BN + (i / 4) * 8 + (lane % 4) * 2 + i % 2;
     if (row < p.m && col < p.n)
       *reinterpret_cast<__nv_bfloat162 *>(b.d + size_t(row) * p.n + col) =
           __floats2bfloat162_rn(acc[i], acc[i + 1]);
@@ -76,13 +77,14 @@ __device__ void store(float const (&acc)[64], Problem p, Buffers b) {
 
 // Split-K partials remain FP32. Each CTA owns a disjoint output tile and
 // split, so no atomics or inter-CTA synchronization are needed here.
-__device__ void store_partial(float const (&acc)[64], Problem p, float *partial) {
+__device__ void store_partial(float const (&acc)[64], Problem p, float *partial,
+                             int tile_m, int tile_n) {
   int lane = threadIdx.x % 32, warp = threadIdx.x / 32;
   size_t base = size_t(blockIdx.z) * p.m * p.n;
 #pragma unroll
   for (int i = 0; i < 64; ++i) {
-    int row = int(blockIdx.y) * BM + warp * 16 + lane / 4 + (i % 4) / 2 * 8;
-    int col = int(blockIdx.x) * BN + (i / 4) * 8 + (lane % 4) * 2 + i % 2;
+    int row = tile_m * BM + warp * 16 + lane / 4 + (i % 4) / 2 * 8;
+    int col = tile_n * BN + (i / 4) * 8 + (lane % 4) * 2 + i % 2;
     if (row < p.m && col < p.n)
       partial[base + size_t(row) * p.n + col] = acc[i];
   }
@@ -119,7 +121,7 @@ __global__ __launch_bounds__(128) void vector_gemm(Problem p, Buffers b) {
     acc.finish_tile(k / BK, (p.k + BK - 1) / BK);
     __syncthreads(); // WGMMA has finished reading operands before reuse.
   }
-  store(acc.result(), p, b);
+  store(acc.result(), p, b, int(blockIdx.y), int(blockIdx.x));
 }
 
 struct Context {
@@ -129,6 +131,7 @@ struct Context {
   int stages = 0;
   bool specialized = false;
   bool stable = false;
+  bool grouped = false;
   int splits = 1;
   float *partial = nullptr;
   ~Context() { if (partial) cudaFree(partial); }
@@ -151,10 +154,20 @@ __device__ void tma_load(CUtensorMap const *map, void *dst, uint64_t *barrier,
          "r"(hopper::smem_address(barrier)), "r"(k), "r"(row) : "memory");
 }
 
-template <int Stages, bool Specialized = false, bool Stable = false, bool Split = false>
+template <int Stages, bool Specialized = false, bool Stable = false, bool Split = false,
+          int GroupM = 1>
 __global__ __launch_bounds__(Specialized ? 256 : 128) void tma_gemm(
     Problem p, Buffers b, const __grid_constant__ CUtensorMap map_a,
     const __grid_constant__ CUtensorMap map_b, float *partial) {
+  int tile_m = int(blockIdx.y), tile_n = int(blockIdx.x);
+  if constexpr (GroupM > 1) {
+    int linear = tile_m * int(gridDim.x) + tile_n;
+    int width = GroupM * int(gridDim.x);
+    int first_m = (linear / width) * GroupM;
+    int rows = min(GroupM, int(gridDim.y) - first_m);
+    tile_m = first_m + (linear % width) % rows;
+    tile_n = (linear % width) / rows;
+  }
   extern __shared__ __align__(1024) unsigned char storage[];
   auto *data = reinterpret_cast<__nv_bfloat16 (*)[(BM + BN) * BK]>(storage);
   __shared__ __align__(8) uint64_t full[Stages];
@@ -187,9 +200,9 @@ __global__ __launch_bounds__(Specialized ? 256 : 128) void tma_gemm(
           asm volatile("mbarrier.arrive.expect_tx.shared::cta.b64 _, [%0], %1;"
                        :: "r"(hopper::smem_address(full + s)),
                           "r"((BM + BN) * BK * 2) : "memory");
-          tma_load(&map_a, data[s], full + s, k_start + tile * BK, int(blockIdx.y) * BM);
+          tma_load(&map_a, data[s], full + s, k_start + tile * BK, tile_m * BM);
           tma_load(&map_b, data[s] + BM * BK, full + s, k_start + tile * BK,
-                   int(blockIdx.x) * BN);
+                   tile_n * BN);
         }
       }
       return;
@@ -203,9 +216,9 @@ __global__ __launch_bounds__(Specialized ? 256 : 128) void tma_gemm(
         asm volatile("mbarrier.arrive.expect_tx.shared::cta.b64 _, [%0], %1;"
                      :: "r"(hopper::smem_address(full + s)),
                         "r"((BM + BN) * BK * 2) : "memory");
-        tma_load(&map_a, data[s], full + s, k_start + s * BK, int(blockIdx.y) * BM);
+        tma_load(&map_a, data[s], full + s, k_start + s * BK, tile_m * BM);
         tma_load(&map_b, data[s] + BM * BK, full + s, k_start + s * BK,
-                 int(blockIdx.x) * BN);
+                 tile_n * BN);
       }
     }
   }
@@ -235,14 +248,14 @@ __global__ __launch_bounds__(Specialized ? 256 : 128) void tma_gemm(
       asm volatile("mbarrier.arrive.expect_tx.shared::cta.b64 _, [%0], %1;"
                    :: "r"(hopper::smem_address(full + s)),
                       "r"((BM + BN) * BK * 2) : "memory");
-      tma_load(&map_a, a, full + s, k_start + (tile + Stages) * BK, int(blockIdx.y) * BM);
-      tma_load(&map_b, bb, full + s, k_start + (tile + Stages) * BK, int(blockIdx.x) * BN);
+      tma_load(&map_a, a, full + s, k_start + (tile + Stages) * BK, tile_m * BM);
+      tma_load(&map_b, bb, full + s, k_start + (tile + Stages) * BK, tile_n * BN);
     }
   }
   if constexpr (Split)
-    store_partial(acc.result(), p, partial);
+    store_partial(acc.result(), p, partial, tile_m, tile_n);
   else
-    store(acc.result(), p, b);
+    store(acc.result(), p, b, tile_m, tile_n);
 }
 
 void make_map(CUtensorMap &map, void const *ptr, int rows, int k, int tile_rows) {
@@ -258,19 +271,28 @@ void make_map(CUtensorMap &map, void const *ptr, int rows, int k, int tile_rows)
     throw std::runtime_error("candidate: tensor map error " + std::to_string(status));
 }
 
-template <int Stages, bool Specialized, bool Stable, bool Split = false>
+template <int Stages, bool Specialized, bool Stable, bool Split = false, int GroupM = 1>
 void dispatch(Context const &c, dim3 grid, cudaStream_t stream, bool configure) {
   constexpr int bytes = Stages * (BM + BN) * BK * 2;
   if (configure)
-    check(cudaFuncSetAttribute(tma_gemm<Stages, Specialized, Stable, Split>,
+    check(cudaFuncSetAttribute(tma_gemm<Stages, Specialized, Stable, Split, GroupM>,
                                cudaFuncAttributeMaxDynamicSharedMemorySize, bytes));
   else
-    tma_gemm<Stages, Specialized, Stable, Split><<<grid, Specialized ? 256 : 128, bytes, stream>>>(
+    tma_gemm<Stages, Specialized, Stable, Split, GroupM><<<grid, Specialized ? 256 : 128, bytes, stream>>>(
         c.problem, c.buffers, c.map_a, c.map_b, c.partial);
 }
 
 template <int Stages, bool Specialized>
 void dispatch(Context const &c, dim3 grid, cudaStream_t stream, bool configure) {
+  if (c.grouped) {
+    if (c.splits > 1)
+      dispatch<Stages, Specialized, false, true, 8>(c, grid, stream, configure);
+    else if (c.stable)
+      dispatch<Stages, Specialized, true, false, 8>(c, grid, stream, configure);
+    else
+      dispatch<Stages, Specialized, false, false, 8>(c, grid, stream, configure);
+    return;
+  }
   if (c.splits > 1)
     dispatch<Stages, Specialized, false, true>(c, grid, stream, configure);
   else if (c.stable)
@@ -332,6 +354,14 @@ void *prepare(Problem p, Buffers b, cudaStream_t) {
   auto c = std::make_unique<Context>();
   c->problem = p;
   c->buffers = b;
+  if (auto *group = std::getenv("BARE_GEMM_GROUP_M")) {
+    int value = std::stoi(group);
+    if (value != 1 && value != 8)
+      throw std::runtime_error("BARE_GEMM_GROUP_M must be 1 or 8");
+    c->grouped = value == 8;
+  } else {
+    c->grouped = p.k >= 2048 && p.k < StableK && p.m % BM == 0 && p.n % BN == 0;
+  }
   char const *mode = std::getenv("BARE_GEMM_STAGES");
   c->stages = mode ? std::stoi(mode) : (p.k >= StableK ? 3 : 1);
   char const *specialized = std::getenv("BARE_GEMM_WARP_SPECIALIZED");

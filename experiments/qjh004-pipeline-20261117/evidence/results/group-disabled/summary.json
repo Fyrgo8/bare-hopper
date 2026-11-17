@@ -1,0 +1,87 @@
+{
+  "timing_status": "pass",
+  "cases": {
+    "square": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 1.0538542865,
+      "candidate_median_ms": 1.0080999135000002,
+      "paired_median_ratio": 0.956583288972861,
+      "bootstrap_95pct_interval": [
+        0.9565310422344101,
+        0.9566517772730574
+      ],
+      "max_relative_mad": 9.405712086564059e-05,
+      "limit": 1.03,
+      "speedup": 1.0453872773313424
+    },
+    "small_m": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 0.30513752995,
+      "candidate_median_ms": 0.2741841078,
+      "paired_median_ratio": 0.8987274838713808,
+      "bootstrap_95pct_interval": [
+        0.8984678459217685,
+        0.89898472542374
+      ],
+      "max_relative_mad": 0.00017309591858111269,
+      "limit": 1.03,
+      "speedup": 1.1126843430807025
+    },
+    "short_k": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 0.27998401225,
+      "candidate_median_ms": 0.25566031035,
+      "paired_median_ratio": 0.9131033009299303,
+      "bootstrap_95pct_interval": [
+        0.9127262507899754,
+        0.9133455784694029
+      ],
+      "max_relative_mad": 0.0005240717097409396,
+      "limit": 1.03,
+      "speedup": 1.0951663398671012
+    },
+    "m_tail": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 0.9810765386,
+      "candidate_median_ms": 0.98508623245,
+      "paired_median_ratio": 1.0041740164653448,
+      "bootstrap_95pct_interval": [
+        1.003643860396391,
+        1.0044214097240183
+      ],
+      "max_relative_mad": 0.0007112904199841714,
+      "limit": 1.03,
+      "speedup": 0.9958433335289464
+    },
+    "mn_tail": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 1.0575025679999999,
+      "candidate_median_ms": 1.008942008,
+      "paired_median_ratio": 0.9540615283013107,
+      "bootstrap_95pct_interval": [
+        0.9540098013825629,
+        0.9541654147910107
+      ],
+      "max_relative_mad": 0.00011053162532214795,
+      "limit": 1.03,
+      "speedup": 1.0481504288098502
+    }
+  },
+  "sm_mhz": [
+    "1800"
+  ],
+  "memory_mhz": [
+    "2619"
+  ],
+  "clock_reason_masks": [
+    "0x0000000000000000"
+  ],
+  "external_pids": [],
+  "binary_sha256": "82e1605ecbdf1f2c38768e9bd295f90b3997d04580c81837e65c08c0e80dc349",
+  "acceptance_status": "inconclusive_memory_unlocked"
+}

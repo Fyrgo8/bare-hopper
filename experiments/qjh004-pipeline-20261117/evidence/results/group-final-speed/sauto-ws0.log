@@ -1,0 +1,16 @@
+square: ring=4, iterations=64
+square: calibrated iterations=240
+small_m: ring=7, iterations=70
+small_m: calibrated iterations=826
+short_k: ring=16, iterations=64
+short_k: calibrated iterations=896
+m_tail: ring=4, iterations=64
+m_tail: calibrated iterations=256
+mn_tail: ring=4, iterations=64
+mn_tail: calibrated iterations=240
+long32768: ring=20, iterations=80
+long32768: calibrated iterations=440
+long65536: ring=10, iterations=70
+long65536: calibrated iterations=220
+large_long: ring=4, iterations=64
+large_long: calibrated iterations=832
