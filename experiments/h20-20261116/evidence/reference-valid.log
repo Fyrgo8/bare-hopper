@@ -1,0 +1,29 @@
+{
+  "directory": "/work/results/20261116T023746Z-bf86ac98",
+  "timing_status": "reference_only",
+  "cases": {
+    "square": {
+      "status": "reference_only",
+      "reference_median_ms": 1.0533688665
+    },
+    "small_m": {
+      "status": "reference_only",
+      "reference_median_ms": 0.30503456295
+    },
+    "short_k": {
+      "status": "reference_only",
+      "reference_median_ms": 0.2791450471
+    },
+    "m_tail": {
+      "status": "reference_only",
+      "reference_median_ms": 0.9807344377
+    },
+    "mn_tail": {
+      "status": "reference_only",
+      "reference_median_ms": 1.0571471455
+    }
+  },
+  "environment_issues": [],
+  "telemetry_measured_samples": 559,
+  "acceptance_status": "reference_only"
+}

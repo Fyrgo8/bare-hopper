@@ -1,0 +1,45 @@
+
+==============NVSMI LOG==============
+
+Timestamp                                 : Mon Nov 16 11:09:28 2026
+Driver Version                            : 535.161.08
+CUDA Version                              : 12.2
+
+Attached GPUs                             : 8
+GPU 00000000:65:02.0
+    Clocks
+        Graphics                          : 345 MHz
+        SM                                : 345 MHz
+        Memory                            : 2619 MHz
+        Video                             : 765 MHz
+    Applications Clocks
+        Graphics                          : 1980 MHz
+        Memory                            : 2619 MHz
+    Default Applications Clocks
+        Graphics                          : 1980 MHz
+        Memory                            : 2619 MHz
+    Deferred Clocks
+        Memory                            : N/A
+    Max Clocks
+        Graphics                          : 1980 MHz
+        SM                                : 1980 MHz
+        Memory                            : 2619 MHz
+        Video                             : 1545 MHz
+    Max Customer Boost Clocks
+        Graphics                          : 1980 MHz
+    SM Clock Samples
+        Duration                          : Not Found
+        Number of Samples                 : Not Found
+        Max                               : Not Found
+        Min                               : Not Found
+        Avg                               : Not Found
+    Memory Clock Samples
+        Duration                          : Not Found
+        Number of Samples                 : Not Found
+        Max                               : Not Found
+        Min                               : Not Found
+        Avg                               : Not Found
+    Clock Policy
+        Auto Boost                        : N/A
+        Auto Boost Default                : N/A
+

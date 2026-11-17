@@ -190,7 +190,7 @@ def main() -> int:
         "environment": {
             k: v
             for k, v in env.items()
-            if k.startswith(("CUDA_", "NVIDIA_", "CUBLAS_"))
+            if k.startswith(("CUDA_", "NVIDIA_", "CUBLAS_", "BARE_"))
         },
     }
     with binary.open("rb") as handle:
@@ -235,7 +235,13 @@ def main() -> int:
                 }
             )
             write_json(out / "manifest.json", manifest)
-            if result.returncode:
+            # Some nvidia-smi versions return zero for unsupported clock options.
+            # A successful exit alone is not evidence that the requested lock exists.
+            message = (result.stdout + result.stderr).lower()
+            if result.returncode or any(
+                phrase in message
+                for phrase in ("not supported", "unsupported", "not permitted")
+            ):
                 raise RuntimeError(
                     "Clock lock failed; inspect manifest; no GPU benchmark ran"
                 )

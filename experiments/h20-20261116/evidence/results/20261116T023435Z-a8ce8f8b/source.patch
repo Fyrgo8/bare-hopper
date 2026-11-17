@@ -1,0 +1,110 @@
+diff --git a/README.md b/README.md
+new file mode 100644
+index 0000000..b18dc0a
+--- /dev/null
++++ b/README.md
+@@ -0,0 +1,5 @@
++# bare-hopper
++
++用 CUDA C++ 和 PTX 手写 Hopper GPU 算子，不依赖 CUTLASS/CuTe，通过复现高性能实现锻炼算子开发基本功。
++
++从 BF16 GEMM 开始，逐步复现 FlashAttention-3 的前向和反向。在 H20 上保证数值正确，并以每个约定测试用例的耗时不超过参考实现的 103% 为目标。
+diff --git a/src/candidate.cu b/src/candidate.cu
+index e9dbfad..a2294d9 100644
+--- a/src/candidate.cu
++++ b/src/candidate.cu
+@@ -1,14 +1,87 @@
+ #include "candidate.hpp"
++#include "hopper_ptx.cuh"
+ #include <stdexcept>
++#include <string>
+ 
+ namespace bare::candidate {
+-bool available() { return false; }
+-char const *name() { return "unimplemented"; }
+-void *prepare(Problem, Buffers, cudaStream_t) {
+-  throw std::runtime_error("Implement src/candidate.cu before using --compare");
++namespace {
++constexpr int BM = 64, BN = 128, BK = 64;
++
++void check(cudaError_t status) {
++  if (status != cudaSuccess)
++    throw std::runtime_error(std::string("candidate: ") + cudaGetErrorString(status));
++}
++
++// Vectorize each contiguous K row; partial K vectors use scalar loads.
++template <int Rows>
++__device__ void load(__nv_bfloat16 *dst, __nv_bfloat16 const *src,
++                     int base_row, int rows, int k, int base_k) {
++  for (int v = threadIdx.x; v < Rows * BK / 8; v += 128) {
++    int row = v / (BK / 8), col = (v % (BK / 8)) * 8;
++    int offset = (row * BK + col) ^ ((row & 7) * 8);
++    uint4 data{};
++    if (base_row + row < rows && base_k + col + 7 < k) {
++      data = *reinterpret_cast<uint4 const *>(src + size_t(base_row + row) * k +
++                                              base_k + col);
++    } else if (base_row + row < rows) {
++      auto *elements = reinterpret_cast<__nv_bfloat16 *>(&data);
++      for (int j = 0; j < 8 && base_k + col + j < k; ++j)
++        elements[j] = src[size_t(base_row + row) * k + base_k + col + j];
++    }
++    *reinterpret_cast<uint4 *>(dst + offset) = data;
++  }
++}
++
++__device__ void store(float const (&acc)[64], Problem p, Buffers b) {
++  int lane = threadIdx.x % 32, warp = threadIdx.x / 32;
++#pragma unroll
++  for (int i = 0; i < 64; ++i) {
++    int row = int(blockIdx.y) * BM + warp * 16 + lane / 4 + (i % 4) / 2 * 8;
++    int col = int(blockIdx.x) * BN + (i / 4) * 8 + (lane % 4) * 2 + i % 2;
++    if (row < p.m && col < p.n)
++      b.d[size_t(row) * p.n + col] = __float2bfloat16_rn(acc[i]);
++  }
++}
++
++__global__ __launch_bounds__(128) void vector_gemm(Problem p, Buffers b) {
++  __shared__ __align__(1024) __nv_bfloat16 a[BM * BK];
++  __shared__ __align__(1024) __nv_bfloat16 bb[BN * BK];
++  float acc[64] = {};
++  hopper::fence();
++  for (int k = 0; k < p.k; k += BK) {
++    load<BM>(a, b.a, int(blockIdx.y) * BM, p.m, p.k, k);
++    load<BN>(bb, b.b, int(blockIdx.x) * BN, p.n, p.k, k);
++    asm volatile("fence.proxy.async.shared::cta;" ::: "memory");
++    __syncthreads();
++#pragma unroll
++    for (int sub = 0; sub < BK; sub += 16)
++      hopper::mma(acc, hopper::descriptor(a + sub), hopper::descriptor(bb + sub));
++    hopper::commit();
++    hopper::wait();
++    __syncthreads(); // WGMMA has finished reading operands before reuse.
++  }
++  store(acc, p, b);
++}
++
++struct Context {
++  Problem problem;
++  Buffers buffers;
++};
++} // namespace
++
++bool available() { return true; }
++char const *name() { return "bare-sm90a-bf16-64x128x64-vector-single-stage"; }
++void *prepare(Problem p, Buffers b, cudaStream_t) {
++  if (p.m <= 0 || p.n <= 0 || p.k <= 0 || p.k % 8 || p.n % 8 ||
++      !b.a || !b.b || !b.d)
++    throw std::runtime_error("candidate: invalid dimensions or buffers");
++  return new Context{p, b};
+ }
+-void launch(void *, cudaStream_t) {
+-  throw std::runtime_error("Candidate is not implemented");
++void launch(void *context, cudaStream_t stream) {
++  auto const &c = *static_cast<Context *>(context);
++  dim3 grid((c.problem.n + BN - 1) / BN, (c.problem.m + BM - 1) / BM);
++  vector_gemm<<<grid, 128, 0, stream>>>(c.problem, c.buffers);
++  check(cudaGetLastError());
+ }
+-void cleanup(void *) {}
++void cleanup(void *context) { delete static_cast<Context *>(context); }
+ } // namespace bare::candidate

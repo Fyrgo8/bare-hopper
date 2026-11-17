@@ -1,0 +1,75 @@
+{
+  "timing_status": "fail",
+  "cases": {
+    "square": {
+      "status": "fail",
+      "rounds": 30,
+      "reference_median_ms": 1.0532821415,
+      "candidate_median_ms": 2.815404892,
+      "paired_median_ratio": 2.6729701140317434,
+      "bootstrap_95pct_interval": [
+        2.672871497852519,
+        2.673089225421328
+      ],
+      "max_relative_mad": 0.00010027655063977758,
+      "limit": 1.03
+    },
+    "small_m": {
+      "status": "fail",
+      "rounds": 30,
+      "reference_median_ms": 0.3047888279,
+      "candidate_median_ms": 0.9045390785,
+      "paired_median_ratio": 2.9677581328629623,
+      "bootstrap_95pct_interval": [
+        2.967389292625727,
+        2.9680301191525995
+      ],
+      "max_relative_mad": 0.0001662264012400885,
+      "limit": 1.03
+    },
+    "short_k": {
+      "status": "fail",
+      "rounds": 30,
+      "reference_median_ms": 0.27962523699999997,
+      "candidate_median_ms": 0.6412521899,
+      "paired_median_ratio": 2.293191953869578,
+      "bootstrap_95pct_interval": [
+        2.292974920397736,
+        2.2934058163437303
+      ],
+      "max_relative_mad": 0.00016653056962812803,
+      "limit": 1.03
+    },
+    "m_tail": {
+      "status": "fail",
+      "rounds": 30,
+      "reference_median_ms": 0.98054292795,
+      "candidate_median_ms": 2.8189543485,
+      "paired_median_ratio": 2.8749041022108255,
+      "bootstrap_95pct_interval": [
+        2.8747796152960676,
+        2.8751604007243357
+      ],
+      "max_relative_mad": 7.874107649818933e-05,
+      "limit": 1.03
+    },
+    "mn_tail": {
+      "status": "fail",
+      "rounds": 30,
+      "reference_median_ms": 1.057100058,
+      "candidate_median_ms": 2.7609814405,
+      "paired_median_ratio": 2.612014401353605,
+      "bootstrap_95pct_interval": [
+        2.6118766060404583,
+        2.6123741628627846
+      ],
+      "max_relative_mad": 7.797661977801823e-05,
+      "limit": 1.03
+    }
+  },
+  "environment_issues": [
+    "Other compute processes appeared during measurement"
+  ],
+  "telemetry_measured_samples": 2061,
+  "acceptance_status": "inconclusive"
+}

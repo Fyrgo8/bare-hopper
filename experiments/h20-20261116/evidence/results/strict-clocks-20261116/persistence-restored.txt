@@ -1,0 +1,2 @@
+Enabled persistence mode for GPU 00000000:65:02.0.
+All done.

@@ -1,0 +1,10 @@
+========= COMPUTE-SANITIZER
+tiny: ring=1, iterations=64
+tiny: validation passed, reference_max_scaled_error=0.0350943, candidate_max_scaled_error=0.0350943
+partial_tile: ring=1, iterations=64
+partial_tile: validation passed, reference_max_scaled_error=0.12266, candidate_max_scaled_error=0.12266
+both_tails_and_partial_k: ring=1, iterations=64
+both_tails_and_partial_k: validation passed, reference_max_scaled_error=0.19188, candidate_max_scaled_error=0.19188
+exact_tile: ring=1, iterations=64
+exact_tile: validation passed, reference_max_scaled_error=0.150918, candidate_max_scaled_error=0.150918
+========= RACECHECK SUMMARY: 0 hazards displayed (0 errors, 0 warnings)

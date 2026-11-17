@@ -1,0 +1,74 @@
+{
+  "directory": "/work/results/20261116T024716Z-bbb1ed33",
+  "timing_status": "pass",
+  "cases": {
+    "square": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 1.053342283,
+      "candidate_median_ms": 1.009386718,
+      "paired_median_ratio": 0.9582449045239201,
+      "bootstrap_95pct_interval": [
+        0.9581332035159698,
+        0.9582846125034555
+      ],
+      "max_relative_mad": 6.743550195998674e-05,
+      "limit": 1.03
+    },
+    "small_m": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 0.30492839215,
+      "candidate_median_ms": 0.276718393,
+      "paired_median_ratio": 0.907481691574456,
+      "bootstrap_95pct_interval": [
+        0.9073771790060998,
+        0.9076117697737015
+      ],
+      "max_relative_mad": 0.00017177000026368354,
+      "limit": 1.03
+    },
+    "short_k": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 0.27971445024999997,
+      "candidate_median_ms": 0.2750547528,
+      "paired_median_ratio": 0.9832002546389264,
+      "bootstrap_95pct_interval": [
+        0.9831012175133278,
+        0.983398655991222
+      ],
+      "max_relative_mad": 0.00016999336272224632,
+      "limit": 1.03
+    },
+    "m_tail": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 0.9806805849,
+      "candidate_median_ms": 0.9984947741000001,
+      "paired_median_ratio": 1.0183000516731309,
+      "bootstrap_95pct_interval": [
+        1.0179057513824177,
+        1.0187853966565792
+      ],
+      "max_relative_mad": 0.0007399730265647727,
+      "limit": 1.03
+    },
+    "mn_tail": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 1.0570713280000001,
+      "candidate_median_ms": 1.0095559355,
+      "paired_median_ratio": 0.9550101534261725,
+      "bootstrap_95pct_interval": [
+        0.9549732840550267,
+        0.9550529255745942
+      ],
+      "max_relative_mad": 5.3668150614421815e-05,
+      "limit": 1.03
+    }
+  },
+  "environment_issues": [],
+  "telemetry_measured_samples": 1106,
+  "acceptance_status": "pass"
+}

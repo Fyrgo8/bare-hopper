@@ -1,0 +1,73 @@
+{
+  "timing_status": "fail",
+  "cases": {
+    "square": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 1.0533789995,
+      "candidate_median_ms": 1.0763661865,
+      "paired_median_ratio": 1.0218365812691053,
+      "bootstrap_95pct_interval": [
+        1.021792364019605,
+        1.021892657409539
+      ],
+      "max_relative_mad": 5.415144978880618e-05,
+      "limit": 1.03
+    },
+    "small_m": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 0.3048166484,
+      "candidate_median_ms": 0.28653159735,
+      "paired_median_ratio": 0.9400003382483199,
+      "bootstrap_95pct_interval": [
+        0.9399564974985738,
+        0.9400512577551043
+      ],
+      "max_relative_mad": 9.122073924091476e-05,
+      "limit": 1.03
+    },
+    "short_k": {
+      "status": "fail",
+      "rounds": 30,
+      "reference_median_ms": 0.279683426,
+      "candidate_median_ms": 0.3243330121,
+      "paired_median_ratio": 1.1596693843261656,
+      "bootstrap_95pct_interval": [
+        1.1595327332809409,
+        1.1597738219675047
+      ],
+      "max_relative_mad": 0.00014806150865736566,
+      "limit": 1.03
+    },
+    "m_tail": {
+      "status": "fail",
+      "rounds": 30,
+      "reference_median_ms": 0.98066955805,
+      "candidate_median_ms": 1.0314508674999998,
+      "paired_median_ratio": 1.0517806602743376,
+      "bootstrap_95pct_interval": [
+        1.051745762109042,
+        1.0518398889305896
+      ],
+      "max_relative_mad": 8.1900421340362e-05,
+      "limit": 1.03
+    },
+    "mn_tail": {
+      "status": "fail",
+      "rounds": 30,
+      "reference_median_ms": 1.057081759,
+      "candidate_median_ms": 1.1002746225,
+      "paired_median_ratio": 1.04087591491203,
+      "bootstrap_95pct_interval": [
+        1.040551385056259,
+        1.0409887763920391
+      ],
+      "max_relative_mad": 0.0002786095341392738,
+      "limit": 1.03
+    }
+  },
+  "environment_issues": [],
+  "telemetry_measured_samples": 1147,
+  "acceptance_status": "fail"
+}

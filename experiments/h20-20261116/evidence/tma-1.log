@@ -1,0 +1,74 @@
+{
+  "directory": "/work/results/20261116T023836Z-dd3f2e0e",
+  "timing_status": "pass",
+  "cases": {
+    "square": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 1.053365052,
+      "candidate_median_ms": 1.0094655155,
+      "paired_median_ratio": 0.9583089235137542,
+      "bootstrap_95pct_interval": [
+        0.9582255303248165,
+        0.9583918880279478
+      ],
+      "max_relative_mad": 7.764554489130031e-05,
+      "limit": 1.03
+    },
+    "small_m": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 0.3048502058,
+      "candidate_median_ms": 0.27672566470000004,
+      "paired_median_ratio": 0.9076082371368871,
+      "bootstrap_95pct_interval": [
+        0.9074024345188302,
+        0.9078523551666475
+      ],
+      "max_relative_mad": 0.00031323440886483626,
+      "limit": 1.03
+    },
+    "short_k": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 0.2797262222,
+      "candidate_median_ms": 0.2750802934,
+      "paired_median_ratio": 0.9832834759101838,
+      "bootstrap_95pct_interval": [
+        0.9831665836092964,
+        0.9834142385610225
+      ],
+      "max_relative_mad": 0.00014303146013747503,
+      "limit": 1.03
+    },
+    "m_tail": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 0.98066845535,
+      "candidate_median_ms": 0.9986076951,
+      "paired_median_ratio": 1.0182571316324969,
+      "bootstrap_95pct_interval": [
+        1.0179946060143663,
+        1.018507930739537
+      ],
+      "max_relative_mad": 0.00042596161844854935,
+      "limit": 1.03
+    },
+    "mn_tail": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 1.057057261,
+      "candidate_median_ms": 1.009523392,
+      "paired_median_ratio": 0.9550523935888353,
+      "bootstrap_95pct_interval": [
+        0.9549815750047097,
+        0.9550966147357187
+      ],
+      "max_relative_mad": 6.907430911629672e-05,
+      "limit": 1.03
+    }
+  },
+  "environment_issues": [],
+  "telemetry_measured_samples": 1094,
+  "acceptance_status": "pass"
+}

@@ -56,7 +56,7 @@ struct Options {
               cache = "rotating";
   int rounds = 30, iterations = 64, warmup = 32;
   uint32_t seed = 20261115;
-  bool compare = false, describe = false;
+  bool compare = false, describe = false, validate_only = false;
 };
 static Options parse(int argc, char **argv) {
   Options o;
@@ -64,7 +64,7 @@ static Options parse(int argc, char **argv) {
     std::string a = argv[i];
     if (a == "--help") {
       std::cout
-          << "gemm_bench [--compare] [--describe] [--cases FILE] [--output "
+          << "gemm_bench [--compare] [--describe] [--validate-only] [--cases FILE] [--output "
              "FILE]\n"
              "  [--rounds 30] [--iterations 64] [--warmup 32] [--seed "
              "20261115]\n"
@@ -92,6 +92,10 @@ static Options parse(int argc, char **argv) {
     }
     if (a == "--describe") {
       o.describe = true;
+      continue;
+    }
+    if (a == "--validate-only") {
+      o.validate_only = true;
       continue;
     }
     if (i + 1 >= argc)
@@ -309,6 +313,12 @@ static void run_case(Case const &c, Options const &o,
       throw std::runtime_error("Numerical validation failed: " + c.id);
   };
   verify(true);
+  if (o.validate_only) {
+    std::cerr << c.id << ": validation passed, reference_max_scaled_error="
+              << re.max_scaled << ", candidate_max_scaled_error="
+              << ce.max_scaled << "\n";
+    return;
+  }
   for (int i = 0; i < std::max<int>(o.warmup, ring); ++i) {
     ref(i);
     if (o.compare)
@@ -369,10 +379,10 @@ int main(int argc, char **argv) {
                 << "\",\"reference\":\"" << bare::Reference::name()
                 << "\",\"stages\":" << bare::Reference::stages()
                 << ",\"cutlass_revision\":\"" << BARE_CUTLASS_REVISION
+                << "\",\"candidate\":\"" << bare::candidate::name()
                 << "\",\"candidate_available\":"
                 << (bare::candidate::available() ? "true" : "false") << "}\n";
-      return 0;
-    }
+      return 0;    }
     if (o.compare && !bare::candidate::available())
       throw std::runtime_error(
           "--compare requires a real candidate; stub cannot pass");

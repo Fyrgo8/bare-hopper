@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/work/scripts/run_bench.py", line 367, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/work/scripts/run_bench.py", line 186, in main
+    "git_revision": command(["git", "rev-parse", "HEAD"]),
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/scripts/run_bench.py", line 62, in command
+    raise RuntimeError(f"{argv}: {result.stdout}\n{result.stderr}")
+RuntimeError: ['git', 'rev-parse', 'HEAD']: 
+fatal: detected dubious ownership in repository at '/work'
+To add an exception for this directory, call:
+
+	git config --global --add safe.directory /work
+

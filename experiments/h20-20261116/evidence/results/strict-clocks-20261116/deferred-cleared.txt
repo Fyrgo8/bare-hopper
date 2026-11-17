@@ -1,0 +1,2 @@
+Please unload and reload the driver in order for changes to take effect.
+All done.

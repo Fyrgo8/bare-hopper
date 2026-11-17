@@ -1,0 +1,31 @@
+{
+  "directory": "/work/results/20261116T025454Z-7dc38c6c",
+  "timing_status": "reference_only",
+  "cases": {
+    "square": {
+      "status": "reference_only",
+      "reference_median_ms": 1.0513089299999998
+    },
+    "small_m": {
+      "status": "reference_only",
+      "reference_median_ms": 0.30501756074999997
+    },
+    "short_k": {
+      "status": "reference_only",
+      "reference_median_ms": 0.2798664421
+    },
+    "m_tail": {
+      "status": "reference_only",
+      "reference_median_ms": 0.980846256
+    },
+    "mn_tail": {
+      "status": "reference_only",
+      "reference_median_ms": 1.0570454
+    }
+  },
+  "environment_issues": [
+    "Memory clock lock exempted: Immediate memory lock unsupported on H20 driver 535; no deferred lock or device reset performed; memory frequency observed via telemetry"
+  ],
+  "telemetry_measured_samples": 565,
+  "acceptance_status": "inconclusive"
+}

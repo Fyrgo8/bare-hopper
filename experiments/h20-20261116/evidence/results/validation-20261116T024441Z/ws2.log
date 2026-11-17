@@ -1,0 +1,74 @@
+{
+  "directory": "/work/results/20261116T024846Z-9ec6bb1b",
+  "timing_status": "fail",
+  "cases": {
+    "square": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 1.053538263,
+      "candidate_median_ms": 1.0732305645,
+      "paired_median_ratio": 1.0186678494309604,
+      "bootstrap_95pct_interval": [
+        1.018638744481862,
+        1.0187172677497842
+      ],
+      "max_relative_mad": 5.725468368679704e-05,
+      "limit": 1.03
+    },
+    "small_m": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 0.3050366342,
+      "candidate_median_ms": 0.28496628999999996,
+      "paired_median_ratio": 0.9341640400521197,
+      "bootstrap_95pct_interval": [
+        0.9339739382181026,
+        0.9343321372146145
+      ],
+      "max_relative_mad": 0.00021142444142529856,
+      "limit": 1.03
+    },
+    "short_k": {
+      "status": "fail",
+      "rounds": 30,
+      "reference_median_ms": 0.2797866315,
+      "candidate_median_ms": 0.32858778535,
+      "paired_median_ratio": 1.174221022840578,
+      "bootstrap_95pct_interval": [
+        1.1737119021787998,
+        1.1745700670758978
+      ],
+      "max_relative_mad": 0.0002530934006308843,
+      "limit": 1.03
+    },
+    "m_tail": {
+      "status": "fail",
+      "rounds": 30,
+      "reference_median_ms": 0.98078551885,
+      "candidate_median_ms": 1.031369984,
+      "paired_median_ratio": 1.0515761745492616,
+      "bootstrap_95pct_interval": [
+        1.0515447189670946,
+        1.0516172778852955
+      ],
+      "max_relative_mad": 5.934421836514048e-05,
+      "limit": 1.03
+    },
+    "mn_tail": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 1.057199299,
+      "candidate_median_ms": 1.0793642405,
+      "paired_median_ratio": 1.0209347450894015,
+      "bootstrap_95pct_interval": [
+        1.0201935640949984,
+        1.0216163666058273
+      ],
+      "max_relative_mad": 0.0008594753885586137,
+      "limit": 1.03
+    }
+  },
+  "environment_issues": [],
+  "telemetry_measured_samples": 1137,
+  "acceptance_status": "fail"
+}

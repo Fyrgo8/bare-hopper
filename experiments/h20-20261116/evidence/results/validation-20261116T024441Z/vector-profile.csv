@@ -1,0 +1,24 @@
+==PROF== Connected to process 3364124 (/work/results/validation-20261116T024441Z/gemm_bench)
+square: ring=1, iterations=64
+square: validation passed, reference_max_scaled_error=0.346021, candidate_max_scaled_error=0.346021
+small_m: ring=1, iterations=64
+small_m: validation passed, reference_max_scaled_error=0.345684, candidate_max_scaled_error=0.345684
+short_k: ring=1, iterations=64
+short_k: validation passed, reference_max_scaled_error=0.311526, candidate_max_scaled_error=0.311526
+m_tail: ring=1, iterations=64
+m_tail: validation passed, reference_max_scaled_error=0.346021, candidate_max_scaled_error=0.346021
+mn_tail: ring=1, iterations=64
+mn_tail: validation passed, reference_max_scaled_error=0.346021, candidate_max_scaled_error=0.346021
+==PROF== Disconnected from process 3364124
+"ID","Process ID","Process Name","Host Name","Kernel Name","Context","Stream","Block Size","Grid Size","Device","CC","Section Name","Metric Name","Metric Unit","Metric Value","Rule Name","Rule Type","Rule Description","Estimated Speedup Type","Estimated Speedup"
+"0","3364124","gemm_bench","127.0.0.1","unnamed>::vector_gemm(Problem, Buffers)","1","13","(128, 1, 1)","(32, 64, 1)","0","9.0","GPU Speed Of Light Throughput","DRAM Frequency","hz","2618962327.13",
+"0","3364124","gemm_bench","127.0.0.1","unnamed>::vector_gemm(Problem, Buffers)","1","13","(128, 1, 1)","(32, 64, 1)","0","9.0","GPU Speed Of Light Throughput","SM Frequency","hz","1774006488.86",
+"0","3364124","gemm_bench","127.0.0.1","unnamed>::vector_gemm(Problem, Buffers)","1","13","(128, 1, 1)","(32, 64, 1)","0","9.0","GPU Speed Of Light Throughput","Elapsed Cycles","cycle","4968544",
+"0","3364124","gemm_bench","127.0.0.1","unnamed>::vector_gemm(Problem, Buffers)","1","13","(128, 1, 1)","(32, 64, 1)","0","9.0","GPU Speed Of Light Throughput","Memory Throughput","%","59.80",
+"0","3364124","gemm_bench","127.0.0.1","unnamed>::vector_gemm(Problem, Buffers)","1","13","(128, 1, 1)","(32, 64, 1)","0","9.0","GPU Speed Of Light Throughput","DRAM Throughput","%","2.41",
+"0","3364124","gemm_bench","127.0.0.1","unnamed>::vector_gemm(Problem, Buffers)","1","13","(128, 1, 1)","(32, 64, 1)","0","9.0","GPU Speed Of Light Throughput","Duration","ns","2796000",
+"0","3364124","gemm_bench","127.0.0.1","unnamed>::vector_gemm(Problem, Buffers)","1","13","(128, 1, 1)","(32, 64, 1)","0","9.0","GPU Speed Of Light Throughput","L1/TEX Cache Throughput","%","61.19",
+"0","3364124","gemm_bench","127.0.0.1","unnamed>::vector_gemm(Problem, Buffers)","1","13","(128, 1, 1)","(32, 64, 1)","0","9.0","GPU Speed Of Light Throughput","L2 Cache Throughput","%","49.44",
+"0","3364124","gemm_bench","127.0.0.1","unnamed>::vector_gemm(Problem, Buffers)","1","13","(128, 1, 1)","(32, 64, 1)","0","9.0","GPU Speed Of Light Throughput","SM Active Cycles","cycle","4847114.32",
+"0","3364124","gemm_bench","127.0.0.1","unnamed>::vector_gemm(Problem, Buffers)","1","13","(128, 1, 1)","(32, 64, 1)","0","9.0","GPU Speed Of Light Throughput","Compute (SM) Throughput","%","34.69",
+"0","3364124","gemm_bench","127.0.0.1","unnamed>::vector_gemm(Problem, Buffers)","1","13","(128, 1, 1)","(32, 64, 1)","0","9.0","SpeedOfLight","","","","SOLBottleneck","OPT","This workload exhibits low compute throughput and memory bandwidth utilization relative to the peak performance of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.","",""

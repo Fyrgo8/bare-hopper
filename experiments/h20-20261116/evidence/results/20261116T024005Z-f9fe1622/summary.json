@@ -1,0 +1,73 @@
+{
+  "timing_status": "fail",
+  "cases": {
+    "square": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 1.0527805685,
+      "candidate_median_ms": 1.063943863,
+      "paired_median_ratio": 1.0106186769086234,
+      "bootstrap_95pct_interval": [
+        1.0104714799298309,
+        1.010822667896111
+      ],
+      "max_relative_mad": 0.00013123674974055603,
+      "limit": 1.03
+    },
+    "small_m": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 0.3048747182,
+      "candidate_median_ms": 0.2793505043,
+      "paired_median_ratio": 0.9162916025655828,
+      "bootstrap_95pct_interval": [
+        0.9162394929027129,
+        0.9163220531593582
+      ],
+      "max_relative_mad": 0.00010083190951846222,
+      "limit": 1.03
+    },
+    "short_k": {
+      "status": "fail",
+      "rounds": 30,
+      "reference_median_ms": 0.27950613204999997,
+      "candidate_median_ms": 0.31855511665,
+      "paired_median_ratio": 1.1396546149903257,
+      "bootstrap_95pct_interval": [
+        1.1393690338299316,
+        1.1399796568610088
+      ],
+      "max_relative_mad": 0.0004159973133583457,
+      "limit": 1.03
+    },
+    "m_tail": {
+      "status": "fail",
+      "rounds": 30,
+      "reference_median_ms": 0.9805740714,
+      "candidate_median_ms": 1.0292538405,
+      "paired_median_ratio": 1.0495951400689874,
+      "bootstrap_95pct_interval": [
+        1.04892542849079,
+        1.049899996783496
+      ],
+      "max_relative_mad": 0.000723997784295882,
+      "limit": 1.03
+    },
+    "mn_tail": {
+      "status": "fail",
+      "rounds": 30,
+      "reference_median_ms": 1.0571554305,
+      "candidate_median_ms": 1.0963810084999999,
+      "paired_median_ratio": 1.0371010793586892,
+      "bootstrap_95pct_interval": [
+        1.037078191481029,
+        1.0371483253195057
+      ],
+      "max_relative_mad": 5.576190435122522e-05,
+      "limit": 1.03
+    }
+  },
+  "environment_issues": [],
+  "telemetry_measured_samples": 1139,
+  "acceptance_status": "fail"
+}

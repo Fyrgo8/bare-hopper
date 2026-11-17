@@ -1,0 +1,13 @@
+Consolidate compiler generated dependencies of target bare_candidate
+[ 25%] Building CUDA object CMakeFiles/bare_candidate.dir/src/candidate.cu.o
+ptxas info    : (C7520) Potential Performance Loss: wgmma.mma_async instructions are serialized due to program dependence on compiler-inserted WG.AR in divergent path in the function '_ZN4bare9candidate45_GLOBAL__N__2d855b37_12_candidate_cu_a3351f3c11vector_gemmENS_7ProblemENS_7BuffersE'
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_ZN4bare9candidate45_GLOBAL__N__2d855b37_12_candidate_cu_a3351f3c11vector_gemmENS_7ProblemENS_7BuffersE' for 'sm_90a'
+ptxas info    : Function properties for _ZN4bare9candidate45_GLOBAL__N__2d855b37_12_candidate_cu_a3351f3c11vector_gemmENS_7ProblemENS_7BuffersE
+    16 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 95 registers, used 1 barriers, 16 bytes cumulative stack size, 24576 bytes smem
+ptxas info    : Compile time = 45.838 ms
+[ 25%] Built target bare_candidate
+Consolidate compiler generated dependencies of target gemm_bench
+[ 50%] Linking CUDA executable gemm_bench
+[100%] Built target gemm_bench

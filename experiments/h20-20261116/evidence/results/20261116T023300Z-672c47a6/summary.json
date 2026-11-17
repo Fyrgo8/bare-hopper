@@ -1,0 +1,30 @@
+{
+  "timing_status": "reference_only",
+  "cases": {
+    "square": {
+      "status": "reference_only",
+      "reference_median_ms": 1.0533463955000002
+    },
+    "small_m": {
+      "status": "reference_only",
+      "reference_median_ms": 0.30421614649999995
+    },
+    "short_k": {
+      "status": "reference_only",
+      "reference_median_ms": 0.27964045105
+    },
+    "m_tail": {
+      "status": "reference_only",
+      "reference_median_ms": 0.9804841876
+    },
+    "mn_tail": {
+      "status": "reference_only",
+      "reference_median_ms": 1.0569580195000001
+    }
+  },
+  "environment_issues": [
+    "Other compute processes appeared during measurement"
+  ],
+  "telemetry_measured_samples": 564,
+  "acceptance_status": "inconclusive"
+}

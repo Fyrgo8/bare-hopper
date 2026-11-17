@@ -1,0 +1,3 @@
+Memory clocks set to "(memClk 1593)" for GPU 00000000:65:02.0
+Please unload and reload the driver in order for changes to take effect.
+All done.

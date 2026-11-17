@@ -1,0 +1,5 @@
+id,m,n,k
+tiny,1,8,8
+partial_tile,63,120,24
+both_tails_and_partial_k,65,136,72
+exact_tile,64,128,64

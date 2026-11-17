@@ -1,0 +1,5 @@
+nvmlInit_v2: code=0, message=Success
+nvmlDeviceGetHandleByUUID: code=0, message=Success
+nvmlDeviceSetMemoryLockedClocks(1593,1593): code=3, message=Not Supported
+nvmlDeviceGetAutoBoostedClocksEnabled: code=3, message=Not Supported
+nvmlShutdown: code=0, message=Success

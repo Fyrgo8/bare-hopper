@@ -1,0 +1,49 @@
+
+ config -- Used to configure settings for groups of GPUs.
+
+Usage: dcgmi config
+   dcgmi config --host <IP/FQDN> -g <groupId> --enforce 
+   dcgmi config --host <IP/FQDN> -g <groupId> --get -v -j 
+   dcgmi config --host <IP/FQDN> -g <groupId> --set -e <0/1> -s <0/1> -a
+        <mem,proc> -P <limit> -c <mode> 
+
+Flags:
+  -g  --group      groupId    The GPU group to query on the specified host.
+      --host       IP/FQDN    Connects to specified IP or fully-qualified domain
+                               name. To connect to a host engine that was
+                               started with -d (unix socket), prefix the unix
+                               socket filename with 'unix://'. [default =
+                               localhost]
+      --set                   Set configuration.
+      --get                   Get configuration. Displays the Target and the
+                               Current Configuration. 
+                               ------ 
+                               1.Sync Boost - Current and Target Sync Boost
+                               State 
+                               2.SM Application Clock - Current and Target SM
+                               application clock values 
+                               3.Memory Application Clock - Current and Target
+                               Memory application clock values 
+                               4.ECC Mode - Current and Target ECC Mode 
+                               5 Power Limit - Current and Target power limits 
+                               6.Compute Mode - Current and Target compute mode
+      --enforce               Enforce configuration.
+  -h  --help                  Displays usage information and exits.
+  -v  --verbose               Display policy information per GPU.
+  -j  --json                  Print the output in a json format
+  -e  --eccmode    0/1        Configure Ecc mode. (1 to Enable, 0 to Disable)
+  -s  --syncboost  0/1        Configure Syncboost. (1 to Enable, 0 to Disable)
+  -a  --appclocks  mem,proc   Configure Application Clocks. Must use memory,proc
+                               clocks (csv) format(MHz). 
+  -P  --powerlimit limit      Configure Power Limit (Watts).
+  -c  --compmode   mode       Configure Compute Mode. Can be any of the
+                               following: 
+                               0 - Unrestricted  
+                               1 - Prohibited 
+                               2 - Exclusive Process
+  --  --ignore_rest           Ignores the rest of the labeled arguments
+                               following this flag.
+
+ 
+ NVIDIA Datacenter GPU Management Interface
+

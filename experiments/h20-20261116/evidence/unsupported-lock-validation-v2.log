@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/work/scripts/run_bench.py", line 367, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/work/scripts/run_bench.py", line 245, in main
+    raise RuntimeError(
+RuntimeError: Clock lock failed; inspect manifest; no GPU benchmark ran
