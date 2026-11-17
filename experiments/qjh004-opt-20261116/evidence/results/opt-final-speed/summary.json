@@ -1,0 +1,161 @@
+{
+  "timing_status": "pass",
+  "cases": {
+    "square": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 1.0538510085000001,
+      "candidate_median_ms": 1.008092046,
+      "paired_median_ratio": 0.9565773798410407,
+      "bootstrap_95pct_interval": [
+        0.9565472560586287,
+        0.9566280501043852
+      ],
+      "max_relative_mad": 7.982058812915446e-05,
+      "limit": 1.03,
+      "speedup": 1.0453937350747047,
+      "speedup_95pct_interval": [
+        1.0453383631087152,
+        1.0454266568286597
+      ]
+    },
+    "small_m": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 0.30495777729999995,
+      "candidate_median_ms": 0.27414532005,
+      "paired_median_ratio": 0.8988305717780275,
+      "bootstrap_95pct_interval": [
+        0.8986269299843397,
+        0.8989890147872626
+      ],
+      "max_relative_mad": 0.0002626975356969143,
+      "limit": 1.03,
+      "speedup": 1.1125567280403508,
+      "speedup_95pct_interval": [
+        1.1123606446254972,
+        1.1128088494047546
+      ]
+    },
+    "short_k": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 0.2800965905,
+      "candidate_median_ms": 0.25567772985,
+      "paired_median_ratio": 0.912832306288436,
+      "bootstrap_95pct_interval": [
+        0.9126320285914021,
+        0.9130937332558418
+      ],
+      "max_relative_mad": 0.0003338307325807356,
+      "limit": 1.03,
+      "speedup": 1.0954914644355507,
+      "speedup_95pct_interval": [
+        1.0951778153533858,
+        1.095731870755671
+      ]
+    },
+    "m_tail": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 0.98115560415,
+      "candidate_median_ms": 0.98518818615,
+      "paired_median_ratio": 1.0041592963316228,
+      "bootstrap_95pct_interval": [
+        1.0037756106611182,
+        1.0050495859654558
+      ],
+      "max_relative_mad": 0.0006553140903191396,
+      "limit": 1.03,
+      "speedup": 0.995857931757623,
+      "speedup_95pct_interval": [
+        0.9949757842439135,
+        0.996238590954973
+      ]
+    },
+    "mn_tail": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 1.0575018525,
+      "candidate_median_ms": 1.0088773364999999,
+      "paired_median_ratio": 0.9539761660356464,
+      "bootstrap_95pct_interval": [
+        0.9539181356896149,
+        0.9540198829225198
+      ],
+      "max_relative_mad": 7.934512661139238e-05,
+      "limit": 1.03,
+      "speedup": 1.0482442178357672,
+      "speedup_95pct_interval": [
+        1.0481961832248463,
+        1.0483079863840425
+      ]
+    },
+    "long32768": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 0.59140267965,
+      "candidate_median_ms": 0.057184765115,
+      "paired_median_ratio": 0.0966933081394519,
+      "bootstrap_95pct_interval": [
+        0.09664574628744639,
+        0.09675116640133646
+      ],
+      "max_relative_mad": 0.0007815096365286895,
+      "limit": 1.03,
+      "speedup": 10.341977322337463,
+      "speedup_95pct_interval": [
+        10.335792706124797,
+        10.34706687478798
+      ]
+    },
+    "long65536": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 1.1773853305,
+      "candidate_median_ms": 0.10271694884999999,
+      "paired_median_ratio": 0.08724166985602345,
+      "bootstrap_95pct_interval": [
+        0.08721087474033515,
+        0.08725888474210136
+      ],
+      "max_relative_mad": 0.00046371655830205463,
+      "limit": 1.03,
+      "speedup": 11.462412418862666,
+      "speedup_95pct_interval": [
+        11.46015105459527,
+        11.466459922314007
+      ]
+    },
+    "large_long": {
+      "status": "pass",
+      "rounds": 30,
+      "reference_median_ms": 0.30085696279999996,
+      "candidate_median_ms": 0.30455981195,
+      "paired_median_ratio": 1.012314413234838,
+      "bootstrap_95pct_interval": [
+        1.0122981549189094,
+        1.0123540553068193
+      ],
+      "max_relative_mad": 3.8880270182514735e-05,
+      "limit": 1.03,
+      "speedup": 0.9878353868384749,
+      "speedup_95pct_interval": [
+        0.9877967048760672,
+        0.987851252262833
+      ]
+    }
+  },
+  "acceptance_status": "inconclusive_memory_unlocked",
+  "binary_sha256": "019c9455781dc1a88d1b4ee2635ae2571164b7190786b0a0da72646be83a2176",
+  "sm_mhz": [
+    "1800"
+  ],
+  "memory_mhz": [
+    "2619"
+  ],
+  "clock_reason_masks": [
+    "0x0000000000000000"
+  ],
+  "external_pids": []
+}

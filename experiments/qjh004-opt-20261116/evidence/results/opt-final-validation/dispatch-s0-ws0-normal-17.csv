@@ -1,0 +1,8 @@
+case,m,n,k,pattern,seed,repeats,oracle,reference_ok,candidate_ok,reference_max_scaled_error,candidate_max_scaled_error
+large,1024,1024,16384,normal,17,3,fp64,1,1,0.3803366123,0.3803366123
+large_cap_fallback,1024,1024,16392,normal,17,3,fp64,1,1,0.3795497109,0.3772896549
+small_cap,512,512,16384,normal,17,3,fp64,1,1,0.3802646827,0.3802646827
+small_cap_fallback,512,512,32776,normal,17,3,fp64,1,1,0.3858439694,0.3804187693
+tile_switch,513,512,16392,normal,17,3,fp64,1,1,0.3796070714,0.3765324558
+n_tail,512,520,16384,normal,17,3,fp64,1,1,0.3802646827,0.3802646827
+large_n_cap_fallback,1024,1032,16384,normal,17,3,fp64,1,1,0.3803366123,0.3803366123

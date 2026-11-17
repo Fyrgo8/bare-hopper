@@ -1,0 +1,27 @@
+{
+  "binary_sha256": "019c9455781dc1a88d1b4ee2635ae2571164b7190786b0a0da72646be83a2176",
+  "jobs": 520,
+  "suites": {
+    "full": {
+      "jobs": 88,
+      "checks": 5352,
+      "candidate_failures": 0,
+      "reference_failures": 21,
+      "candidate_max_scaled_error": 0.3882802895
+    },
+    "long": {
+      "jobs": 216,
+      "checks": 3024,
+      "candidate_failures": 0,
+      "reference_failures": 126,
+      "candidate_max_scaled_error": 0.6149215353
+    },
+    "dispatch": {
+      "jobs": 216,
+      "checks": 1512,
+      "candidate_failures": 0,
+      "reference_failures": 27,
+      "candidate_max_scaled_error": 0.3883731255
+    }
+  }
+}

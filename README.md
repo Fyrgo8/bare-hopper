@@ -14,3 +14,5 @@
 
 第 4 轮：BARE_GEMM_STABLE_LONG_K=1 显式启用长 K 分段累加，K≥16384 时每 256 项形成 WGMMA 部分和，再用普通 FP32 加法合并，总和最终只转换一次 BF16；默认关闭。全部 9 条路径的 3024 项长 K 组合候选通过，固定参考仍有 126 项失败。见 [验证报告](experiments/qjh004-20261116/REPORT.md) 和 [诊断计时](experiments/qjh004-20261116/SPEED.md)。
 
+第 5 轮：长 K 分段累加现在默认启用。K<16384 默认使用单级 TMA，长 K 默认使用三级；小输出长 K 采用 K=256 的 Split-K 与顺序 FP32 归并，临时空间上限 64 MiB，两次 launch 都计入候选耗时。输出改为相邻 BF16 成对写回。BARE_GEMM_STABLE_LONG_K=0 或 BARE_GEMM_SPLIT_K=0 可关闭相应路径。最终二进制 9888 项组合回归通过，见 [优化报告](experiments/qjh004-opt-20261116/REPORT.md)。
+

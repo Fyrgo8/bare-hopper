@@ -65,11 +65,38 @@ __device__ void load(__nv_bfloat16 *dst, __nv_bfloat16 const *src,
 __device__ void store(float const (&acc)[64], Problem p, Buffers b) {
   int lane = threadIdx.x % 32, warp = threadIdx.x / 32;
 #pragma unroll
+  for (int i = 0; i < 64; i += 2) {
+    int row = int(blockIdx.y) * BM + warp * 16 + lane / 4 + (i % 4) / 2 * 8;
+    int col = int(blockIdx.x) * BN + (i / 4) * 8 + (lane % 4) * 2 + i % 2;
+    if (row < p.m && col < p.n)
+      *reinterpret_cast<__nv_bfloat162 *>(b.d + size_t(row) * p.n + col) =
+          __floats2bfloat162_rn(acc[i], acc[i + 1]);
+  }
+}
+
+// Split-K partials remain FP32. Each CTA owns a disjoint output tile and
+// split, so no atomics or inter-CTA synchronization are needed here.
+__device__ void store_partial(float const (&acc)[64], Problem p, float *partial) {
+  int lane = threadIdx.x % 32, warp = threadIdx.x / 32;
+  size_t base = size_t(blockIdx.z) * p.m * p.n;
+#pragma unroll
   for (int i = 0; i < 64; ++i) {
     int row = int(blockIdx.y) * BM + warp * 16 + lane / 4 + (i % 4) / 2 * 8;
     int col = int(blockIdx.x) * BN + (i / 4) * 8 + (lane % 4) * 2 + i % 2;
     if (row < p.m && col < p.n)
-      b.d[size_t(row) * p.n + col] = __float2bfloat16_rn(acc[i]);
+      partial[base + size_t(row) * p.n + col] = acc[i];
+  }
+}
+
+__global__ void reduce_splits(Problem p, Buffers b, float const *partial, int splits) {
+  size_t index = size_t(blockIdx.x) * blockDim.x + threadIdx.x;
+  size_t elements = size_t(p.m) * p.n;
+  if (index < elements) {
+    float sum = 0;
+#pragma unroll 1
+    for (int split = 0; split < splits; ++split)
+      sum += partial[size_t(split) * elements + index];
+    b.d[index] = __float2bfloat16_rn(sum);
   }
 }
 
@@ -102,6 +129,9 @@ struct Context {
   int stages = 0;
   bool specialized = false;
   bool stable = false;
+  int splits = 1;
+  float *partial = nullptr;
+  ~Context() { if (partial) cudaFree(partial); }
 };
 
 __device__ void barrier_wait(uint64_t *barrier, int phase) {
@@ -121,10 +151,10 @@ __device__ void tma_load(CUtensorMap const *map, void *dst, uint64_t *barrier,
          "r"(hopper::smem_address(barrier)), "r"(k), "r"(row) : "memory");
 }
 
-template <int Stages, bool Specialized = false, bool Stable = false>
+template <int Stages, bool Specialized = false, bool Stable = false, bool Split = false>
 __global__ __launch_bounds__(Specialized ? 256 : 128) void tma_gemm(
     Problem p, Buffers b, const __grid_constant__ CUtensorMap map_a,
-    const __grid_constant__ CUtensorMap map_b) {
+    const __grid_constant__ CUtensorMap map_b, float *partial) {
   extern __shared__ __align__(1024) unsigned char storage[];
   auto *data = reinterpret_cast<__nv_bfloat16 (*)[(BM + BN) * BK]>(storage);
   __shared__ __align__(8) uint64_t full[Stages];
@@ -143,7 +173,10 @@ __global__ __launch_bounds__(Specialized ? 256 : 128) void tma_gemm(
   __syncthreads();
   Accumulator<Stable> acc;
   hopper::fence();
-  int tiles = (p.k + BK - 1) / BK;
+  int k_start = Split ? int(blockIdx.z) * SegmentK : 0;
+  int remaining = p.k - k_start;
+  int extent = Split && remaining > SegmentK ? SegmentK : remaining;
+  int tiles = (extent + BK - 1) / BK;
   if constexpr (Specialized) {
     if (threadIdx.x >= 128) {
       if (threadIdx.x == 128) {
@@ -154,8 +187,8 @@ __global__ __launch_bounds__(Specialized ? 256 : 128) void tma_gemm(
           asm volatile("mbarrier.arrive.expect_tx.shared::cta.b64 _, [%0], %1;"
                        :: "r"(hopper::smem_address(full + s)),
                           "r"((BM + BN) * BK * 2) : "memory");
-          tma_load(&map_a, data[s], full + s, tile * BK, int(blockIdx.y) * BM);
-          tma_load(&map_b, data[s] + BM * BK, full + s, tile * BK,
+          tma_load(&map_a, data[s], full + s, k_start + tile * BK, int(blockIdx.y) * BM);
+          tma_load(&map_b, data[s] + BM * BK, full + s, k_start + tile * BK,
                    int(blockIdx.x) * BN);
         }
       }
@@ -170,8 +203,8 @@ __global__ __launch_bounds__(Specialized ? 256 : 128) void tma_gemm(
         asm volatile("mbarrier.arrive.expect_tx.shared::cta.b64 _, [%0], %1;"
                      :: "r"(hopper::smem_address(full + s)),
                         "r"((BM + BN) * BK * 2) : "memory");
-        tma_load(&map_a, data[s], full + s, s * BK, int(blockIdx.y) * BM);
-        tma_load(&map_b, data[s] + BM * BK, full + s, s * BK,
+        tma_load(&map_a, data[s], full + s, k_start + s * BK, int(blockIdx.y) * BM);
+        tma_load(&map_b, data[s] + BM * BK, full + s, k_start + s * BK,
                  int(blockIdx.x) * BN);
       }
     }
@@ -202,11 +235,14 @@ __global__ __launch_bounds__(Specialized ? 256 : 128) void tma_gemm(
       asm volatile("mbarrier.arrive.expect_tx.shared::cta.b64 _, [%0], %1;"
                    :: "r"(hopper::smem_address(full + s)),
                       "r"((BM + BN) * BK * 2) : "memory");
-      tma_load(&map_a, a, full + s, (tile + Stages) * BK, int(blockIdx.y) * BM);
-      tma_load(&map_b, bb, full + s, (tile + Stages) * BK, int(blockIdx.x) * BN);
+      tma_load(&map_a, a, full + s, k_start + (tile + Stages) * BK, int(blockIdx.y) * BM);
+      tma_load(&map_b, bb, full + s, k_start + (tile + Stages) * BK, int(blockIdx.x) * BN);
     }
   }
-  store(acc.result(), p, b);
+  if constexpr (Split)
+    store_partial(acc.result(), p, partial);
+  else
+    store(acc.result(), p, b);
 }
 
 void make_map(CUtensorMap &map, void const *ptr, int rows, int k, int tile_rows) {
@@ -222,20 +258,22 @@ void make_map(CUtensorMap &map, void const *ptr, int rows, int k, int tile_rows)
     throw std::runtime_error("candidate: tensor map error " + std::to_string(status));
 }
 
-template <int Stages, bool Specialized, bool Stable>
+template <int Stages, bool Specialized, bool Stable, bool Split = false>
 void dispatch(Context const &c, dim3 grid, cudaStream_t stream, bool configure) {
   constexpr int bytes = Stages * (BM + BN) * BK * 2;
   if (configure)
-    check(cudaFuncSetAttribute(tma_gemm<Stages, Specialized, Stable>,
+    check(cudaFuncSetAttribute(tma_gemm<Stages, Specialized, Stable, Split>,
                                cudaFuncAttributeMaxDynamicSharedMemorySize, bytes));
   else
-    tma_gemm<Stages, Specialized, Stable><<<grid, Specialized ? 256 : 128, bytes, stream>>>(
-        c.problem, c.buffers, c.map_a, c.map_b);
+    tma_gemm<Stages, Specialized, Stable, Split><<<grid, Specialized ? 256 : 128, bytes, stream>>>(
+        c.problem, c.buffers, c.map_a, c.map_b, c.partial);
 }
 
 template <int Stages, bool Specialized>
 void dispatch(Context const &c, dim3 grid, cudaStream_t stream, bool configure) {
-  if (c.stable)
+  if (c.splits > 1)
+    dispatch<Stages, Specialized, false, true>(c, grid, stream, configure);
+  else if (c.stable)
     dispatch<Stages, Specialized, true>(c, grid, stream, configure);
   else
     dispatch<Stages, Specialized, false>(c, grid, stream, configure);
@@ -266,7 +304,8 @@ char const *implementation_name() {
     return specialized_name.c_str();
   }
   char const *mode = std::getenv("BARE_GEMM_STAGES");
-  int stages = mode ? std::stoi(mode) : 1;
+  if (!mode) return "bare-sm90a-bf16-64x128x64-auto-tma-s1-s3";
+  int stages = std::stoi(mode);
   switch (stages) {
   case 0: return "bare-sm90a-bf16-64x128x64-vector-single-stage";
   case 1: return "bare-sm90a-bf16-64x128x64-tma-stages1";
@@ -278,9 +317,12 @@ char const *implementation_name() {
 }
 char const *name() {
   static std::string result = std::string(implementation_name()) +
-      ((std::getenv("BARE_GEMM_STABLE_LONG_K") &&
+      ((!std::getenv("BARE_GEMM_STABLE_LONG_K") ||
         std::string(std::getenv("BARE_GEMM_STABLE_LONG_K")) == "1")
-           ? "-experimental-segment256-k16384" : "");
+           ? "-segment256-k16384" : "") +
+      ((!std::getenv("BARE_GEMM_SPLIT_K") ||
+        std::string(std::getenv("BARE_GEMM_SPLIT_K")) == "1")
+           ? "-split256-small-output" : "");
   return result.c_str();
 }
 void *prepare(Problem p, Buffers b, cudaStream_t) {
@@ -291,14 +333,25 @@ void *prepare(Problem p, Buffers b, cudaStream_t) {
   c->problem = p;
   c->buffers = b;
   char const *mode = std::getenv("BARE_GEMM_STAGES");
-  c->stages = mode ? std::stoi(mode) : 1;
+  c->stages = mode ? std::stoi(mode) : (p.k >= StableK ? 3 : 1);
   char const *specialized = std::getenv("BARE_GEMM_WARP_SPECIALIZED");
   c->specialized = specialized && std::string(specialized) == "1";
   char const *stable = std::getenv("BARE_GEMM_STABLE_LONG_K");
-  c->stable = stable && std::string(stable) == "1" && p.k >= StableK;
+  c->stable = (!stable || std::string(stable) == "1") && p.k >= StableK;
   if (c->stages < 0 || c->stages > 4)
     throw std::runtime_error("BARE_GEMM_STAGES must be 0 (vector), or 1..4 (TMA)");
   if (c->stages) {
+    // An opt-in path for long reductions with too few output CTAs to fill
+    // the device. Bound scratch storage independently of the input size.
+    char const *split = std::getenv("BARE_GEMM_SPLIT_K");
+    size_t output_tiles = size_t((p.m + BM - 1) / BM) * ((p.n + BN - 1) / BN);
+    int splits = (p.k + SegmentK - 1) / SegmentK;
+    size_t bytes = size_t(splits) * p.m * p.n * sizeof(float);
+    if (c->stable && (!split || std::string(split) == "1") &&
+        output_tiles <= 32 && splits <= 65535 && bytes <= 64ULL * 1024 * 1024) {
+      c->splits = splits;
+      check(cudaMalloc(&c->partial, bytes));
+    }
     make_map(c->map_a, b.a, p.m, p.k, BM);
     make_map(c->map_b, b.b, p.n, p.k, BN);
     dispatch(*c, dim3{}, nullptr, true);
@@ -307,7 +360,7 @@ void *prepare(Problem p, Buffers b, cudaStream_t) {
 }
 void launch(void *context, cudaStream_t stream) {
   auto const &c = *static_cast<Context *>(context);
-  dim3 grid((c.problem.n + BN - 1) / BN, (c.problem.m + BM - 1) / BM);
+  dim3 grid((c.problem.n + BN - 1) / BN, (c.problem.m + BM - 1) / BM, c.splits);
   if (c.stages == 0) {
     if (c.stable)
       vector_gemm<true><<<grid, 128, 0, stream>>>(c.problem, c.buffers);
@@ -316,6 +369,11 @@ void launch(void *context, cudaStream_t stream) {
   }
   else
     dispatch(c, grid, stream, false);
+  if (c.splits > 1) {
+    check(cudaGetLastError());
+    reduce_splits<<<(size_t(c.problem.m) * c.problem.n + 255) / 256, 256, 0, stream>>>(
+        c.problem, c.buffers, c.partial, c.splits);
+  }
   check(cudaGetLastError());
 }
 void cleanup(void *context) { delete static_cast<Context *>(context); }

@@ -1,0 +1,38 @@
+large: ring=1, iterations=64
+large: fp32_oracle_max_abs_error=0.00250411
+large: fp32_oracle_max_abs_error=0.00243416
+large: fp32_oracle_max_abs_error=0.00268123
+large: validation passed, reference_max_scaled_error=0.748263, candidate_max_scaled_error=0.388338
+large_cap_fallback: ring=1, iterations=64
+large_cap_fallback: fp32_oracle_max_abs_error=0.00290995
+large_cap_fallback: fp32_oracle_max_abs_error=0.00256651
+large_cap_fallback: fp32_oracle_max_abs_error=0.0028171
+large_cap_fallback: validation passed, reference_max_scaled_error=0.81353, candidate_max_scaled_error=0.388373
+small_cap: ring=1, iterations=64
+small_cap: fp32_oracle_max_abs_error=0.000918138
+small_cap: fp32_oracle_max_abs_error=0.000960767
+small_cap: fp32_oracle_max_abs_error=0.00100515
+small_cap: validation passed, reference_max_scaled_error=0.724787, candidate_max_scaled_error=0.388302
+small_cap_fallback: ring=1, iterations=64
+small_cap_fallback: fp32_oracle_max_abs_error=0.00197241
+validation mismatch: index=131537, actual=-0.4765625, expected=-0.4365808964, scaled_error=1.640889645
+small_cap_fallback: fp32_oracle_max_abs_error=0.001697079177
+validation mismatch: index=92469, actual=0.486328125, expected=0.4524036646, scaled_error=1.383314701
+small_cap_fallback: fp32_oracle_max_abs_error=0.001949658692
+validation mismatch: index=197832, actual=0.345703125, expected=0.3848671317, scaled_error=1.642188204
+small_cap_fallback: validation FAILED, reference_max_scaled_error=1.642188204, candidate_max_scaled_error=0.3882904872
+tile_switch: ring=1, iterations=64
+tile_switch: fp32_oracle_max_abs_error=0.002032967401
+tile_switch: fp32_oracle_max_abs_error=0.002354434808
+tile_switch: fp32_oracle_max_abs_error=0.002060882776
+tile_switch: validation passed, reference_max_scaled_error=0.747266999, candidate_max_scaled_error=0.3880996674
+n_tail: ring=1, iterations=64
+n_tail: fp32_oracle_max_abs_error=0.0009181381538
+n_tail: fp32_oracle_max_abs_error=0.000960766527
+n_tail: fp32_oracle_max_abs_error=0.001005148457
+n_tail: validation passed, reference_max_scaled_error=0.7247870156, candidate_max_scaled_error=0.3883022927
+large_n_cap_fallback: ring=1, iterations=64
+large_n_cap_fallback: fp32_oracle_max_abs_error=0.002368854388
+large_n_cap_fallback: fp32_oracle_max_abs_error=0.002466652111
+large_n_cap_fallback: fp32_oracle_max_abs_error=0.002390116977
+large_n_cap_fallback: validation passed, reference_max_scaled_error=0.7482626996, candidate_max_scaled_error=0.3883377091

@@ -1,0 +1,8 @@
+id,m,n,k
+large,1024,1024,16384
+large_cap_fallback,1024,1024,16392
+small_cap,512,512,16384
+small_cap_fallback,512,512,32776
+tile_switch,513,512,16392
+n_tail,512,520,16384
+large_n_cap_fallback,1024,1032,16384

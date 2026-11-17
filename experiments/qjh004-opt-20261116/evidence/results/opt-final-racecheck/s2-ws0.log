@@ -1,0 +1,22 @@
+========= COMPUTE-SANITIZER
+split_boundary: ring=1, iterations=64
+split_boundary: fp32_oracle_max_abs_error=2.9006e-05
+split_boundary: fp32_oracle_max_abs_error=3.20999e-05
+split_boundary: fp32_oracle_max_abs_error=3.26815e-05
+split_boundary: validation passed, reference_max_scaled_error=0.373178, candidate_max_scaled_error=0.373178
+split_remainder: ring=1, iterations=64
+split_remainder: fp32_oracle_max_abs_error=3.58697e-05
+split_remainder: fp32_oracle_max_abs_error=3.69941e-05
+split_remainder: fp32_oracle_max_abs_error=3.29753e-05
+split_remainder: validation passed, reference_max_scaled_error=0.374486, candidate_max_scaled_error=0.374486
+split_tiny: ring=1, iterations=64
+split_tiny: fp32_oracle_max_abs_error=1.31932e-05
+split_tiny: fp32_oracle_max_abs_error=9.72889e-06
+split_tiny: fp32_oracle_max_abs_error=2.31689e-05
+split_tiny: validation passed, reference_max_scaled_error=0.288785, candidate_max_scaled_error=0.288785
+split_mn_tail: ring=1, iterations=64
+split_mn_tail: fp32_oracle_max_abs_error=7.32965e-05
+split_mn_tail: fp32_oracle_max_abs_error=7.89596e-05
+split_mn_tail: fp32_oracle_max_abs_error=6.6835e-05
+split_mn_tail: validation passed, reference_max_scaled_error=0.376775, candidate_max_scaled_error=0.376223
+========= RACECHECK SUMMARY: 0 hazards displayed (0 errors, 0 warnings)

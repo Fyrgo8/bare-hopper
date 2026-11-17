@@ -1,0 +1,15 @@
+case,m,n,k,pattern,seed,repeats,oracle,reference_ok,candidate_ok,reference_max_scaled_error,candidate_max_scaled_error
+m1_n8_k16392,1,8,16392,cancellation,99173,3,fp64,1,1,0,0
+m63_n120_k32776,63,120,32776,cancellation,99173,3,fp64,1,1,0,0
+m65_n136_k8192,65,136,8192,cancellation,99173,3,fp64,1,1,0,0
+m65_n136_k16376,65,136,16376,cancellation,99173,3,fp64,1,1,0,0
+m65_n136_k16384,65,136,16384,cancellation,99173,3,fp64,1,1,0,0
+m65_n136_k16392,65,136,16392,cancellation,99173,3,fp64,1,1,0,0
+m65_n136_k16632,65,136,16632,cancellation,99173,3,fp64,1,1,0,0
+m65_n136_k16640,65,136,16640,cancellation,99173,3,fp64,1,1,0,0
+m65_n136_k16648,65,136,16648,cancellation,99173,3,fp64,1,1,0,0
+m65_n136_k32760,65,136,32760,cancellation,99173,3,fp64,1,1,0,0
+m65_n136_k32768,65,136,32768,cancellation,99173,3,fp64,1,1,0,0
+m65_n136_k32776,65,136,32776,cancellation,99173,3,fp64,1,1,0,0
+m65_n136_k65536,65,136,65536,cancellation,99173,3,fp64,1,1,0,0
+m129_n264_k16384,129,264,16384,cancellation,99173,3,fp64,1,1,0,0

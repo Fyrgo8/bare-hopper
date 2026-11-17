@@ -1,0 +1,35 @@
+large: ring=1, iterations=64
+large: fp32_oracle_max_abs_error=0.000108826
+large: fp32_oracle_max_abs_error=0.000104078
+large: fp32_oracle_max_abs_error=0.000123752
+large: validation passed, reference_max_scaled_error=0.380337, candidate_max_scaled_error=0.380337
+large_cap_fallback: ring=1, iterations=64
+large_cap_fallback: fp32_oracle_max_abs_error=0.000120226
+large_cap_fallback: fp32_oracle_max_abs_error=0.000105953
+large_cap_fallback: fp32_oracle_max_abs_error=0.000105053
+large_cap_fallback: validation passed, reference_max_scaled_error=0.37955, candidate_max_scaled_error=0.37729
+small_cap: ring=1, iterations=64
+small_cap: fp32_oracle_max_abs_error=4.19468e-05
+small_cap: fp32_oracle_max_abs_error=4.12475e-05
+small_cap: fp32_oracle_max_abs_error=4.08911e-05
+small_cap: validation passed, reference_max_scaled_error=0.380265, candidate_max_scaled_error=0.380265
+small_cap_fallback: ring=1, iterations=64
+small_cap_fallback: fp32_oracle_max_abs_error=7.02714e-05
+small_cap_fallback: fp32_oracle_max_abs_error=6.96371e-05
+small_cap_fallback: fp32_oracle_max_abs_error=7.46714e-05
+small_cap_fallback: validation passed, reference_max_scaled_error=0.385844, candidate_max_scaled_error=0.380419
+tile_switch: ring=1, iterations=64
+tile_switch: fp32_oracle_max_abs_error=9.3548e-05
+tile_switch: fp32_oracle_max_abs_error=8.5516e-05
+tile_switch: fp32_oracle_max_abs_error=0.000114777
+tile_switch: validation passed, reference_max_scaled_error=0.379607, candidate_max_scaled_error=0.376532
+n_tail: ring=1, iterations=64
+n_tail: fp32_oracle_max_abs_error=4.19468e-05
+n_tail: fp32_oracle_max_abs_error=4.12475e-05
+n_tail: fp32_oracle_max_abs_error=4.08911e-05
+n_tail: validation passed, reference_max_scaled_error=0.380265, candidate_max_scaled_error=0.380265
+large_n_cap_fallback: ring=1, iterations=64
+large_n_cap_fallback: fp32_oracle_max_abs_error=0.000105671
+large_n_cap_fallback: fp32_oracle_max_abs_error=0.000102441
+large_n_cap_fallback: fp32_oracle_max_abs_error=9.51253e-05
+large_n_cap_fallback: validation passed, reference_max_scaled_error=0.380337, candidate_max_scaled_error=0.380337

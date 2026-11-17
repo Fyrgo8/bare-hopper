@@ -1,0 +1,45 @@
+square: ring=1, iterations=64
+square: fp32_oracle_max_abs_error=0.00342122
+square: fp32_oracle_max_abs_error=0.00422868
+square: fp32_oracle_max_abs_error=0.00368959
+square: validation passed, reference_max_scaled_error=0.38828, candidate_max_scaled_error=0.38828
+small_m: ring=1, iterations=64
+small_m: fp32_oracle_max_abs_error=0.000683781
+small_m: fp32_oracle_max_abs_error=0.000739816
+small_m: fp32_oracle_max_abs_error=0.00071574
+small_m: validation passed, reference_max_scaled_error=0.388021, candidate_max_scaled_error=0.388021
+short_k: ring=1, iterations=64
+short_k: fp32_oracle_max_abs_error=0.0011516
+short_k: fp32_oracle_max_abs_error=0.000980575
+short_k: fp32_oracle_max_abs_error=0.000927505
+short_k: validation passed, reference_max_scaled_error=0.387478, candidate_max_scaled_error=0.387478
+m_tail: ring=1, iterations=64
+m_tail: fp32_oracle_max_abs_error=0.00342122
+m_tail: fp32_oracle_max_abs_error=0.00422868
+m_tail: fp32_oracle_max_abs_error=0.00368959
+m_tail: validation passed, reference_max_scaled_error=0.38828, candidate_max_scaled_error=0.38828
+mn_tail: ring=1, iterations=64
+mn_tail: fp32_oracle_max_abs_error=0.00342122
+mn_tail: fp32_oracle_max_abs_error=0.00422868
+mn_tail: fp32_oracle_max_abs_error=0.00368959
+mn_tail: validation passed, reference_max_scaled_error=0.38828, candidate_max_scaled_error=0.38828
+long32768: ring=1, iterations=64
+long32768: fp32_oracle_max_abs_error=0.00139396
+validation mismatch: index=2796, actual=-0.09228515625, expected=-0.06955750287, scaled_error=1.098189026
+long32768: fp32_oracle_max_abs_error=0.001281890218
+long32768: fp32_oracle_max_abs_error=0.001393811504
+validation mismatch: index=5016, actual=0.9296875, expected=0.968482852, scaled_error=1.306908408
+long32768: validation FAILED, reference_max_scaled_error=1.306908408, candidate_max_scaled_error=0.3860119783
+long65536: ring=1, iterations=64
+long65536: fp32_oracle_max_abs_error=0.00374076108
+validation mismatch: index=7545, actual=-0.3828125, expected=-0.320900023, scaled_error=2.667606377
+long65536: fp32_oracle_max_abs_error=0.003004649319
+validation mismatch: index=4855, actual=0.09423828125, expected=0.03279295564, scaled_error=3.022704572
+long65536: fp32_oracle_max_abs_error=0.002960771402
+validation mismatch: index=6443, actual=-0.0771484375, expected=-0.1563436538, scaled_error=3.672662108
+long65536: validation FAILED, reference_max_scaled_error=3.672662108, candidate_max_scaled_error=0.3869606309
+large_long: ring=1, iterations=64
+large_long: fp32_oracle_max_abs_error=0.002865610644
+large_long: fp32_oracle_max_abs_error=0.002470814215
+large_long: fp32_oracle_max_abs_error=0.002437778418
+large_long: validation passed, reference_max_scaled_error=0.8411320466, candidate_max_scaled_error=0.3881591547
