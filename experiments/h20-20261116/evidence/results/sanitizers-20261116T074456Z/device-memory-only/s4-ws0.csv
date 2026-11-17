@@ -1,0 +1,8 @@
+case,m,n,k,pattern,seed,repeats,oracle,reference_ok,candidate_ok,reference_max_scaled_error,candidate_max_scaled_error
+tiny,1,8,8,uniform,99173,3,fp32,1,1,0.06110213232,0.06110213232
+before_tile,63,120,56,uniform,99173,3,fp32,1,1,0.2733885552,0.2733885552
+tile,64,128,64,uniform,99173,3,fp32,1,1,0.3075039297,0.3075039297
+after_tile,65,136,72,uniform,99173,3,fp32,1,1,0.310967309,0.310967309
+wrap3,127,248,200,uniform,99173,3,fp32,1,1,0.3292564027,0.3292564027
+wrap4,129,264,264,uniform,99173,3,fp32,1,1,0.337476408,0.337476408
+wrap8,65,136,520,uniform,99173,3,fp32,1,1,0.3445902873,0.3445902873

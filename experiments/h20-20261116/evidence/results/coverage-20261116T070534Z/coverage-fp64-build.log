@@ -1,0 +1,16 @@
+[ 25%] Built target bare_candidate
+Consolidate compiler generated dependencies of target gemm_bench
+[ 50%] Building CUDA object CMakeFiles/gemm_bench.dir/src/gemm_bench.cu.o
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_Z9to_doublePK13__nv_bfloat16Pdm' for 'sm_90a'
+ptxas info    : Function properties for _Z9to_doublePK13__nv_bfloat16Pdm
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 14 registers, used 0 barriers
+ptxas info    : Compile time = 3.556 ms
+ptxas info    : Compiling entry function '_Z8to_floatPK13__nv_bfloat16Pfm' for 'sm_90a'
+ptxas info    : Function properties for _Z8to_floatPK13__nv_bfloat16Pfm
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 14 registers, used 0 barriers
+ptxas info    : Compile time = 2.209 ms
+[ 75%] Linking CUDA executable gemm_bench
+[100%] Built target gemm_bench

@@ -1,0 +1,120 @@
+m1_n8_k8: ring=1, iterations=64
+m1_n8_k8: fp32_oracle_max_abs_error=0
+m1_n8_k8: fp32_oracle_max_abs_error=0
+m1_n8_k8: fp32_oracle_max_abs_error=0
+m1_n8_k8: validation passed, reference_max_scaled_error=0.18794, candidate_max_scaled_error=0.18794
+m63_n120_k56: ring=1, iterations=64
+m63_n120_k56: fp32_oracle_max_abs_error=9.53674e-07
+m63_n120_k56: fp32_oracle_max_abs_error=9.53674e-07
+m63_n120_k56: fp32_oracle_max_abs_error=1.01328e-06
+m63_n120_k56: validation passed, reference_max_scaled_error=0.265152, candidate_max_scaled_error=0.265152
+m63_n128_k264: ring=1, iterations=64
+m63_n128_k264: fp32_oracle_max_abs_error=1.51992e-06
+m63_n128_k264: fp32_oracle_max_abs_error=1.72853e-06
+m63_n128_k264: fp32_oracle_max_abs_error=1.54972e-06
+m63_n128_k264: validation passed, reference_max_scaled_error=0.337962, candidate_max_scaled_error=0.337962
+m63_n264_k72: ring=1, iterations=64
+m63_n264_k72: fp32_oracle_max_abs_error=1.07288e-06
+m63_n264_k72: fp32_oracle_max_abs_error=1.32807e-06
+m63_n264_k72: fp32_oracle_max_abs_error=1.82539e-06
+m63_n264_k72: validation passed, reference_max_scaled_error=0.296127, candidate_max_scaled_error=0.296127
+m64_n128_k64: ring=1, iterations=64
+m64_n128_k64: fp32_oracle_max_abs_error=1.02818e-06
+m64_n128_k64: fp32_oracle_max_abs_error=9.53674e-07
+m64_n128_k64: fp32_oracle_max_abs_error=9.46224e-07
+m64_n128_k64: validation passed, reference_max_scaled_error=0.294574, candidate_max_scaled_error=0.294574
+m64_n136_k56: ring=1, iterations=64
+m64_n136_k56: fp32_oracle_max_abs_error=9.53674e-07
+m64_n136_k56: fp32_oracle_max_abs_error=9.53674e-07
+m64_n136_k56: fp32_oracle_max_abs_error=1.00583e-06
+m64_n136_k56: validation passed, reference_max_scaled_error=0.301385, candidate_max_scaled_error=0.301385
+m64_n264_k128: ring=1, iterations=64
+m64_n264_k128: fp32_oracle_max_abs_error=2.26498e-06
+m64_n264_k128: fp32_oracle_max_abs_error=2.45869e-06
+m64_n264_k128: fp32_oracle_max_abs_error=2.6226e-06
+m64_n264_k128: validation passed, reference_max_scaled_error=0.307506, candidate_max_scaled_error=0.307506
+m65_n136_k16: ring=1, iterations=64
+m65_n136_k16: fp32_oracle_max_abs_error=2.6077e-07
+m65_n136_k16: fp32_oracle_max_abs_error=2.68221e-07
+m65_n136_k16: fp32_oracle_max_abs_error=2.38419e-07
+m65_n136_k16: validation passed, reference_max_scaled_error=0.238876, candidate_max_scaled_error=0.238876
+m65_n136_k72: ring=1, iterations=64
+m65_n136_k72: fp32_oracle_max_abs_error=1.07288e-06
+m65_n136_k72: fp32_oracle_max_abs_error=7.89762e-07
+m65_n136_k72: fp32_oracle_max_abs_error=1.2517e-06
+m65_n136_k72: validation passed, reference_max_scaled_error=0.307735, candidate_max_scaled_error=0.307735
+m65_n136_k192: ring=1, iterations=64
+m65_n136_k192: fp32_oracle_max_abs_error=3.01003e-06
+m65_n136_k192: fp32_oracle_max_abs_error=3.45707e-06
+m65_n136_k192: fp32_oracle_max_abs_error=3.33786e-06
+m65_n136_k192: validation passed, reference_max_scaled_error=0.308027, candidate_max_scaled_error=0.308027
+m65_n136_k200: ring=1, iterations=64
+m65_n136_k200: fp32_oracle_max_abs_error=2.92063e-06
+m65_n136_k200: fp32_oracle_max_abs_error=2.63751e-06
+m65_n136_k200: fp32_oracle_max_abs_error=2.76044e-06
+m65_n136_k200: validation passed, reference_max_scaled_error=0.305418, candidate_max_scaled_error=0.305418
+m65_n136_k256: ring=1, iterations=64
+m65_n136_k256: fp32_oracle_max_abs_error=2.39909e-06
+m65_n136_k256: fp32_oracle_max_abs_error=2.08616e-06
+m65_n136_k256: fp32_oracle_max_abs_error=2.29478e-06
+m65_n136_k256: validation passed, reference_max_scaled_error=0.336648, candidate_max_scaled_error=0.336648
+m65_n136_k264: ring=1, iterations=64
+m65_n136_k264: fp32_oracle_max_abs_error=1.8155e-06
+m65_n136_k264: fp32_oracle_max_abs_error=1.72853e-06
+m65_n136_k264: fp32_oracle_max_abs_error=1.8701e-06
+m65_n136_k264: validation passed, reference_max_scaled_error=0.337962, candidate_max_scaled_error=0.337962
+m65_n136_k320: ring=1, iterations=64
+m65_n136_k320: fp32_oracle_max_abs_error=2.22214e-06
+m65_n136_k320: fp32_oracle_max_abs_error=2.27988e-06
+m65_n136_k320: fp32_oracle_max_abs_error=2.02656e-06
+m65_n136_k320: validation passed, reference_max_scaled_error=0.335318, candidate_max_scaled_error=0.335318
+m65_n136_k512: ring=1, iterations=64
+m65_n136_k512: fp32_oracle_max_abs_error=3.11434e-06
+m65_n136_k512: fp32_oracle_max_abs_error=3.53344e-06
+m65_n136_k512: fp32_oracle_max_abs_error=3.43099e-06
+m65_n136_k512: validation passed, reference_max_scaled_error=0.345247, candidate_max_scaled_error=0.345247
+m65_n136_k520: ring=1, iterations=64
+m65_n136_k520: fp32_oracle_max_abs_error=3.58745e-06
+m65_n136_k520: fp32_oracle_max_abs_error=3.8594e-06
+m65_n136_k520: fp32_oracle_max_abs_error=3.45707e-06
+m65_n136_k520: validation passed, reference_max_scaled_error=0.341803, candidate_max_scaled_error=0.341803
+m65_n136_k4104: ring=1, iterations=64
+m65_n136_k4104: fp32_oracle_max_abs_error=1.66483e-05
+m65_n136_k4104: fp32_oracle_max_abs_error=1.81161e-05
+m65_n136_k4104: fp32_oracle_max_abs_error=1.97818e-05
+m65_n136_k4104: validation passed, reference_max_scaled_error=0.365291, candidate_max_scaled_error=0.365291
+m65_n136_k65536: ring=1, iterations=64
+m65_n136_k65536: fp32_oracle_max_abs_error=0.000123599
+m65_n136_k65536: fp32_oracle_max_abs_error=0.000120279
+m65_n136_k65536: fp32_oracle_max_abs_error=0.00012637
+m65_n136_k65536: validation passed, reference_max_scaled_error=0.49173, candidate_max_scaled_error=0.49173
+m65_n264_k264: ring=1, iterations=64
+m65_n264_k264: fp32_oracle_max_abs_error=1.99676e-06
+m65_n264_k264: fp32_oracle_max_abs_error=1.99676e-06
+m65_n264_k264: fp32_oracle_max_abs_error=2.26498e-06
+m65_n264_k264: validation passed, reference_max_scaled_error=0.336559, candidate_max_scaled_error=0.336559
+m127_n136_k72: ring=1, iterations=64
+m127_n136_k72: fp32_oracle_max_abs_error=1.20699e-06
+m127_n136_k72: fp32_oracle_max_abs_error=1.32807e-06
+m127_n136_k72: fp32_oracle_max_abs_error=1.20699e-06
+m127_n136_k72: validation passed, reference_max_scaled_error=0.307536, candidate_max_scaled_error=0.307536
+m128_n128_k128: ring=1, iterations=64
+m128_n128_k128: fp32_oracle_max_abs_error=2.20537e-06
+m128_n128_k128: fp32_oracle_max_abs_error=2.08616e-06
+m128_n128_k128: fp32_oracle_max_abs_error=2.14204e-06
+m128_n128_k128: validation passed, reference_max_scaled_error=0.310067, candidate_max_scaled_error=0.310067
+m129_n136_k64: ring=1, iterations=64
+m129_n136_k64: fp32_oracle_max_abs_error=1.02818e-06
+m129_n136_k64: fp32_oracle_max_abs_error=1.27219e-06
+m129_n136_k64: fp32_oracle_max_abs_error=1.2517e-06
+m129_n136_k64: validation passed, reference_max_scaled_error=0.309117, candidate_max_scaled_error=0.309117
+m129_n264_k264: ring=1, iterations=64
+m129_n264_k264: fp32_oracle_max_abs_error=2.79769e-06
+m129_n264_k264: fp32_oracle_max_abs_error=2.63192e-06
+m129_n264_k264: fp32_oracle_max_abs_error=2.98023e-06
+m129_n264_k264: validation passed, reference_max_scaled_error=0.337959, candidate_max_scaled_error=0.337959
+m4096_n4096_k4096: ring=1, iterations=64
+m4096_n4096_k4096: fp32_oracle_max_abs_error=0.000245975
+m4096_n4096_k4096: fp32_oracle_max_abs_error=0.000222823
+m4096_n4096_k4096: fp32_oracle_max_abs_error=0.000227544
+m4096_n4096_k4096: validation passed, reference_max_scaled_error=0.377439, candidate_max_scaled_error=0.377439

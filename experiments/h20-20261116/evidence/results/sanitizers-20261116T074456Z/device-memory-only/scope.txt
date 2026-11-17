@@ -1,0 +1,1 @@
+GPU 7; diagnostic only: --report-api-errors no excludes cuBLAS cuCtxGetLimit API probes; original GPU 0 unfiltered failures retained.

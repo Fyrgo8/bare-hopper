@@ -53,9 +53,10 @@ struct Blas {
 };
 struct Options {
   std::string cases = "configs/gemm.csv", output = "samples.csv",
-              cache = "rotating";
+              cache = "rotating", pattern = "dyadic", oracle = "fp32";
   int rounds = 30, iterations = 64, warmup = 32;
   uint32_t seed = 20261115;
+  int validation_repeats = 3;
   bool compare = false, describe = false, validate_only = false;
 };
 static Options parse(int argc, char **argv) {
@@ -69,6 +70,9 @@ static Options parse(int argc, char **argv) {
              "  [--rounds 30] [--iterations 64] [--warmup 32] [--seed "
              "20261115]\n"
              "  [--cache rotating|hot]\n"
+             "  [--pattern dyadic|uniform|normal|logscale|zero|ones|identity|cancellation]\n"
+             "  [--validation-repeats 3] (validate-only; refresh inputs each time)\n"
+             "  [--oracle fp32|fp64] (fp64 requires validate-only)\n"
              "BF16 A=row(M,K), B=column(K,N), D=row(M,N); FP32 accumulation.\n"
              "Reference-only is the default; --compare requires a real "
              "candidate.\n"
@@ -107,6 +111,12 @@ static Options parse(int argc, char **argv) {
       o.output = v;
     else if (a == "--cache")
       o.cache = v;
+    else if (a == "--pattern")
+      o.pattern = v;
+    else if (a == "--oracle")
+      o.oracle = v;
+    else if (a == "--validation-repeats")
+      o.validation_repeats = std::stoi(v);
     else if (a == "--rounds")
       o.rounds = std::stoi(v);
     else if (a == "--iterations")
@@ -119,8 +129,19 @@ static Options parse(int argc, char **argv) {
       throw std::runtime_error("Unknown option " + a);
   }
   if (o.rounds < 10 || o.iterations < 1 || o.warmup < 1 ||
+      o.validation_repeats < 1 ||
       (o.cache != "rotating" && o.cache != "hot"))
     throw std::runtime_error("Invalid timing options");
+  if (o.pattern != "dyadic" && o.pattern != "uniform" && o.pattern != "normal" &&
+      o.pattern != "logscale" && o.pattern != "zero" && o.pattern != "ones" &&
+      o.pattern != "identity" && o.pattern != "cancellation")
+    throw std::runtime_error("Unknown input pattern: " + o.pattern);
+  if (o.pattern != "dyadic" && !o.validate_only)
+    throw std::runtime_error("Extra input patterns require --validate-only");
+  if (o.oracle != "fp32" && o.oracle != "fp64")
+    throw std::runtime_error("Unknown oracle: " + o.oracle);
+  if (o.oracle == "fp64" && !o.validate_only)
+    throw std::runtime_error("FP64 oracle requires --validate-only");
   return o;
 }
 struct Case {
@@ -174,13 +195,33 @@ struct Slot {
       bare::candidate::cleanup(candidate);
   }
 };
-static void fill(Device<__nv_bfloat16> &device, size_t n, std::mt19937 &rng) {
+static void fill(Device<__nv_bfloat16> &device, size_t n, std::mt19937 &rng,
+                 Options const &o, bare::Problem p, bool is_a) {
   std::vector<__nv_bfloat16> host(n);
   // Integer distribution makes all initial values exactly representable in
   // BF16.
   std::uniform_int_distribution<int> dist(-64, 64);
-  for (auto &x : host)
-    x = __float2bfloat16(float(dist(rng)) / 128.f);
+  std::uniform_real_distribution<float> uniform(-1.f, 1.f);
+  std::normal_distribution<float> normal(0.f, 0.5f);
+  std::uniform_int_distribution<int> exponent(-3, 3);
+  for (size_t i = 0; i < n; ++i) {
+    float x = float(dist(rng)) / 128.f;
+    int row = int(i / p.k), k = int(i % p.k);
+    if (o.pattern == "uniform") x = uniform(rng);
+    else if (o.pattern == "normal") x = normal(rng);
+    else if (o.pattern == "logscale") x = std::ldexp(uniform(rng), exponent(rng));
+    else if (o.pattern == "zero") x = 0;
+    else if (o.pattern == "ones") x = 1;
+    else if (o.pattern == "identity" && is_a) x = row == k ? 1.f : 0.f;
+    else if (o.pattern == "cancellation") {
+      // Adjacent A values are identical; adjacent B values are exact opposites.
+      // K is even, so the exact matrix product is zero.
+      int code = (row * 17 + (k / 2) * 13 + int(o.seed % 127)) % 65 - 32;
+      x = float(code) / 64.f;
+      if (!is_a && k % 2) x = -x;
+    }
+    host[i] = __float2bfloat16_rn(x);
+  }
   ck(cudaMemcpy(device.ptr, host.data(), n * sizeof(host[0]),
                 cudaMemcpyHostToDevice));
 }
@@ -188,6 +229,11 @@ __global__ void to_float(__nv_bfloat16 const *src, float *dst, size_t n) {
   for (size_t i = size_t(blockIdx.x) * blockDim.x + threadIdx.x; i < n;
        i += size_t(gridDim.x) * blockDim.x)
     dst[i] = __bfloat162float(src[i]);
+}
+__global__ void to_double(__nv_bfloat16 const *src, double *dst, size_t n) {
+  for (size_t i = size_t(blockIdx.x) * blockDim.x + threadIdx.x; i < n;
+       i += size_t(gridDim.x) * blockDim.x)
+    dst[i] = double(__bfloat162float(src[i]));
 }
 struct Error {
   bool ok = true;
@@ -199,6 +245,7 @@ static Error validate(__nv_bfloat16 const *output,
   ck(cudaMemcpy(actual.data(), output, actual.size() * sizeof(actual[0]),
                 cudaMemcpyDeviceToHost));
   Error e;
+  size_t worst = 0;
   for (size_t i = 0; i < actual.size(); ++i) {
     double x = __bfloat162float(actual[i]), y = expected[i];
     if (!std::isfinite(x) || !std::isfinite(y)) {
@@ -207,10 +254,18 @@ static Error validate(__nv_bfloat16 const *output,
       continue;
     }
     double scaled = std::abs(x - y) / (0.02 + 0.01 * std::abs(y));
-    e.max_scaled = std::max(e.max_scaled, scaled);
+    if (scaled > e.max_scaled) {
+      e.max_scaled = scaled;
+      worst = i;
+    }
     if (scaled > 1)
       e.ok = false;
   }
+  if (!e.ok)
+    std::cerr << "validation mismatch: index=" << worst
+              << ", actual=" << std::setprecision(10) << __bfloat162float(actual[worst])
+              << ", expected=" << expected[worst]
+              << ", scaled_error=" << e.max_scaled << '\n';
   return e;
 }
 static float time_batch(std::function<void(int)> const &launch, int count,
@@ -232,7 +287,7 @@ static int64_t now_ms() {
              std::chrono::system_clock::now().time_since_epoch())
       .count();
 }
-static void run_case(Case const &c, Options const &o,
+static bool run_case(Case const &c, Options const &o,
                      cudaDeviceProp const &prop, std::ofstream &csv) {
   auto p = c.p;
   Stream stream;
@@ -252,8 +307,8 @@ static void run_case(Case const &c, Options const &o,
   std::mt19937 rng(o.seed);
   for (size_t i = 0; i < ring; ++i) {
     auto s = std::make_unique<Slot>(p);
-    fill(s->a, size_t(p.m) * p.k, rng);
-    fill(s->b, size_t(p.k) * p.n, rng);
+    fill(s->a, size_t(p.m) * p.k, rng, o, p, true);
+    fill(s->b, size_t(p.k) * p.n, rng, o, p, false);
     s->reference = std::make_unique<bare::Reference>(
         p, bare::Buffers{s->a.ptr, s->b.ptr, s->ref.ptr}, stream.value);
     if (o.compare) {
@@ -287,6 +342,47 @@ static void run_case(Case const &c, Options const &o,
                          expected.size() * sizeof(float),
                          cudaMemcpyDeviceToHost, stream.value));
       ck(cudaStreamSynchronize(stream.value));
+      if (o.oracle == "fp64") {
+        // FP32 SGEMM can accumulate enough rounding error on long K to
+        // misclassify near-zero outputs. Use independent DGEMM for coverage;
+        // the timed protocol continues to use its original FP32 oracle.
+        Device<double> ad(size_t(p.m) * p.k), bd(size_t(p.k) * p.n),
+            gd(expected.size());
+        to_double<<<256, 256, 0, stream.value>>>(s->a.ptr, ad.ptr, size_t(p.m) * p.k);
+        to_double<<<256, 256, 0, stream.value>>>(s->b.ptr, bd.ptr, size_t(p.k) * p.n);
+        ck(cudaGetLastError());
+        double da = 1, db = 0;
+        cb(cublasDgemm(blas.value, CUBLAS_OP_T, CUBLAS_OP_N, p.n, p.m, p.k,
+                       &da, bd.ptr, p.k, ad.ptr, p.k, &db, gd.ptr, p.n));
+        std::vector<double> exact(expected.size());
+        ck(cudaMemcpyAsync(exact.data(), gd.ptr, exact.size() * sizeof(double),
+                            cudaMemcpyDeviceToHost, stream.value));
+        ck(cudaStreamSynchronize(stream.value));
+        double fp32_max_abs = 0;
+        for (size_t i = 0; i < expected.size(); ++i) {
+          fp32_max_abs = std::max(fp32_max_abs, std::abs(double(expected[i]) - exact[i]));
+          expected[i] = float(exact[i]);
+        }
+        std::cerr << c.id << ": fp32_oracle_max_abs_error=" << fp32_max_abs << '\n';
+      }
+      // Exact structured oracles also verify the independent SGEMM result.
+      if (o.pattern == "zero" || o.pattern == "cancellation")
+        for (float y : expected)
+          if (y != 0) throw std::runtime_error("Exact zero oracle failed: " + c.id);
+      if (o.pattern == "ones")
+        for (float y : expected)
+          if (y != float(p.k)) throw std::runtime_error("Exact ones oracle failed: " + c.id);
+      if (o.pattern == "identity") {
+        std::vector<__nv_bfloat16> host_b(size_t(p.n) * p.k);
+        ck(cudaMemcpy(host_b.data(), s->b.ptr, host_b.size() * sizeof(host_b[0]),
+                      cudaMemcpyDeviceToHost));
+        for (int row = 0; row < p.m; ++row)
+          for (int col = 0; col < p.n; ++col) {
+            float exact = row < p.k ? __bfloat162float(host_b[size_t(col) * p.k + row]) : 0;
+            if (expected[size_t(row) * p.n + col] != exact)
+              throw std::runtime_error("Exact identity oracle failed: " + c.id);
+          }
+      }
       if (launch_fresh) {
         ck(cudaMemsetAsync(s->ref.ptr, 0xff,
                            expected.size() * sizeof(__nv_bfloat16),
@@ -309,15 +405,29 @@ static void run_case(Case const &c, Options const &o,
         ce.max_scaled = std::max(ce.max_scaled, e.max_scaled);
       }
     }
-    if (!re.ok || (o.compare && !ce.ok))
+    if ((!re.ok || (o.compare && !ce.ok)) && !o.validate_only)
       throw std::runtime_error("Numerical validation failed: " + c.id);
   };
   verify(true);
   if (o.validate_only) {
-    std::cerr << c.id << ": validation passed, reference_max_scaled_error="
+    for (int repeat = 1; repeat < o.validation_repeats; ++repeat) {
+      for (auto const &s : slots) {
+        fill(s->a, size_t(p.m) * p.k, rng, o, p, true);
+        fill(s->b, size_t(p.k) * p.n, rng, o, p, false);
+      }
+      verify(true);
+    }
+    csv << c.id << ',' << p.m << ',' << p.n << ',' << p.k << ',' << o.pattern
+        << ',' << o.seed << ',' << o.validation_repeats << ',' << o.oracle << ',' << re.ok << ','
+        << (o.compare ? (ce.ok ? "1" : "0") : "") << ','
+        << re.max_scaled << ',' << (o.compare ? ce.max_scaled : 0) << '\n';
+    csv.flush();
+    bool ok = re.ok && (!o.compare || ce.ok);
+    std::cerr << c.id << (ok ? ": validation passed" : ": validation FAILED")
+              << ", reference_max_scaled_error="
               << re.max_scaled << ", candidate_max_scaled_error="
               << ce.max_scaled << "\n";
-    return;
+    return ok;
   }
   for (int i = 0; i < std::max<int>(o.warmup, ring); ++i) {
     ref(i);
@@ -357,6 +467,7 @@ static void run_case(Case const &c, Options const &o,
   ck(cudaStreamSynchronize(stream.value));
   verify(false); // Check actual timed outputs, without repairing them by
                  // relaunching.
+  return true;
 }
 int main(int argc, char **argv) {
   try {
@@ -382,7 +493,8 @@ int main(int argc, char **argv) {
                 << "\",\"candidate\":\"" << bare::candidate::name()
                 << "\",\"candidate_available\":"
                 << (bare::candidate::available() ? "true" : "false") << "}\n";
-      return 0;    }
+      return 0;
+    }
     if (o.compare && !bare::candidate::available())
       throw std::runtime_error(
           "--compare requires a real candidate; stub cannot pass");
@@ -390,15 +502,19 @@ int main(int argc, char **argv) {
     std::ofstream csv(o.output);
     if (!csv)
       throw std::runtime_error("Cannot open output file");
-    csv << std::setprecision(10)
-        << "case,round,order,reference_ms,candidate_ms,reference_ok,candidate_"
+    csv << std::setprecision(10);
+    if (o.validate_only)
+      csv << "case,m,n,k,pattern,seed,repeats,oracle,reference_ok,candidate_ok,"
+             "reference_max_scaled_error,candidate_max_scaled_error\n";
+    else csv << "case,round,order,reference_ms,candidate_ms,reference_ok,candidate_"
            "ok,reference_max_scaled_error,candidate_max_scaled_error,ring,"
            "iterations,start_unix_ms,end_unix_ms\n";
+    bool all_ok = true;
     for (auto const &c : cases)
-      run_case(c, o, prop, csv);
+      all_ok &= run_case(c, o, prop, csv);
     if (!csv)
       throw std::runtime_error("Writing samples failed");
-    return 0;
+    return all_ok ? 0 : 1;
   } catch (std::exception const &e) {
     std::cerr << "ERROR: " << e.what() << '\n';
     return 1;

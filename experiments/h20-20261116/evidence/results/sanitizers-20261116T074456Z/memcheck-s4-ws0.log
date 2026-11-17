@@ -1,0 +1,72 @@
+========= COMPUTE-SANITIZER
+========= Program hit CUDA_ERROR_INVALID_VALUE (error 1) due to "invalid argument" on CUDA API call to cuCtxGetLimit.
+=========     Saved host backtrace up to driver entry point at error
+=========         Host Frame:  [0x2d1034] in libcuda.so.1
+=========         Host Frame:  [0xf63a55] in libcublasLt.so.12
+=========         Host Frame: cublasLtCtxInit [0xf63d74] in libcublasLt.so.12
+=========         Host Frame: cublasCreate_v2 [0x1701c2] in libcublas.so.12
+=========         Host Frame: main [0xd810] in gemm_bench
+========= 
+tiny: ring=1, iterations=64
+tiny: validation passed, reference_max_scaled_error=0.0611021, candidate_max_scaled_error=0.0611021
+========= Program hit CUDA_ERROR_INVALID_VALUE (error 1) due to "invalid argument" on CUDA API call to cuCtxGetLimit.
+=========     Saved host backtrace up to driver entry point at error
+=========         Host Frame:  [0x2d1034] in libcuda.so.1
+=========         Host Frame:  [0xf63a55] in libcublasLt.so.12
+=========         Host Frame: cublasLtCtxInit [0xf63d74] in libcublasLt.so.12
+=========         Host Frame: cublasCreate_v2 [0x1701c2] in libcublas.so.12
+=========         Host Frame: main [0xd810] in gemm_bench
+========= 
+before_tile: ring=1, iterations=64
+before_tile: validation passed, reference_max_scaled_error=0.273389, candidate_max_scaled_error=0.273389
+========= Program hit CUDA_ERROR_INVALID_VALUE (error 1) due to "invalid argument" on CUDA API call to cuCtxGetLimit.
+=========     Saved host backtrace up to driver entry point at error
+=========         Host Frame:  [0x2d1034] in libcuda.so.1
+=========         Host Frame:  [0xf63a55] in libcublasLt.so.12
+=========         Host Frame: cublasLtCtxInit [0xf63d74] in libcublasLt.so.12
+=========         Host Frame: cublasCreate_v2 [0x1701c2] in libcublas.so.12
+=========         Host Frame: main [0xd810] in gemm_bench
+========= 
+tile: ring=1, iterations=64
+tile: validation passed, reference_max_scaled_error=0.307504, candidate_max_scaled_error=0.307504
+========= Program hit CUDA_ERROR_INVALID_VALUE (error 1) due to "invalid argument" on CUDA API call to cuCtxGetLimit.
+=========     Saved host backtrace up to driver entry point at error
+=========         Host Frame:  [0x2d1034] in libcuda.so.1
+=========         Host Frame:  [0xf63a55] in libcublasLt.so.12
+=========         Host Frame: cublasLtCtxInit [0xf63d74] in libcublasLt.so.12
+=========         Host Frame: cublasCreate_v2 [0x1701c2] in libcublas.so.12
+=========         Host Frame: main [0xd810] in gemm_bench
+========= 
+after_tile: ring=1, iterations=64
+after_tile: validation passed, reference_max_scaled_error=0.310967, candidate_max_scaled_error=0.310967
+========= Program hit CUDA_ERROR_INVALID_VALUE (error 1) due to "invalid argument" on CUDA API call to cuCtxGetLimit.
+=========     Saved host backtrace up to driver entry point at error
+=========         Host Frame:  [0x2d1034] in libcuda.so.1
+=========         Host Frame:  [0xf63a55] in libcublasLt.so.12
+=========         Host Frame: cublasLtCtxInit [0xf63d74] in libcublasLt.so.12
+=========         Host Frame: cublasCreate_v2 [0x1701c2] in libcublas.so.12
+=========         Host Frame: main [0xd810] in gemm_bench
+========= 
+wrap3: ring=1, iterations=64
+wrap3: validation passed, reference_max_scaled_error=0.329256, candidate_max_scaled_error=0.329256
+========= Program hit CUDA_ERROR_INVALID_VALUE (error 1) due to "invalid argument" on CUDA API call to cuCtxGetLimit.
+=========     Saved host backtrace up to driver entry point at error
+=========         Host Frame:  [0x2d1034] in libcuda.so.1
+=========         Host Frame:  [0xf63a55] in libcublasLt.so.12
+=========         Host Frame: cublasLtCtxInit [0xf63d74] in libcublasLt.so.12
+=========         Host Frame: cublasCreate_v2 [0x1701c2] in libcublas.so.12
+=========         Host Frame: main [0xd810] in gemm_bench
+========= 
+wrap4: ring=1, iterations=64
+wrap4: validation passed, reference_max_scaled_error=0.337476, candidate_max_scaled_error=0.337476
+========= Program hit CUDA_ERROR_INVALID_VALUE (error 1) due to "invalid argument" on CUDA API call to cuCtxGetLimit.
+=========     Saved host backtrace up to driver entry point at error
+=========         Host Frame:  [0x2d1034] in libcuda.so.1
+=========         Host Frame:  [0xf63a55] in libcublasLt.so.12
+=========         Host Frame: cublasLtCtxInit [0xf63d74] in libcublasLt.so.12
+=========         Host Frame: cublasCreate_v2 [0x1701c2] in libcublas.so.12
+=========         Host Frame: main [0xd810] in gemm_bench
+========= 
+wrap8: ring=1, iterations=64
+wrap8: validation passed, reference_max_scaled_error=0.34459, candidate_max_scaled_error=0.34459
+========= ERROR SUMMARY: 7 errors

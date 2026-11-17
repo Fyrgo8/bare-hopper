@@ -1,0 +1,18 @@
+{
+  "initial_preflight": "busy_on_gpu0; no kernels launched",
+  "retry_gpu0": {
+    "memcheck": "9 API-error exits; 7 cuCtxGetLimit errors per mode",
+    "racecheck": "9 modes pass, 0 errors / 0 warnings",
+    "synccheck": "9 modes pass, 0 errors"
+  },
+  "device_memory_only_gpu7": {
+    "status": "9 modes pass, 0 errors",
+    "report_api_errors": "no",
+    "scope": "Device memory diagnostics only; original API errors remain unresolved"
+  },
+  "shapes_per_mode": 7,
+  "repeats": 3,
+  "binary_matches_coverage": true,
+  "monitor_state": "active",
+  "gpu_settings_changed": false
+}

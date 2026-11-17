@@ -1,0 +1,16 @@
+========= COMPUTE-SANITIZER
+tiny: ring=1, iterations=64
+tiny: validation passed, reference_max_scaled_error=0.0611021, candidate_max_scaled_error=0.0611021
+before_tile: ring=1, iterations=64
+before_tile: validation passed, reference_max_scaled_error=0.273389, candidate_max_scaled_error=0.273389
+tile: ring=1, iterations=64
+tile: validation passed, reference_max_scaled_error=0.307504, candidate_max_scaled_error=0.307504
+after_tile: ring=1, iterations=64
+after_tile: validation passed, reference_max_scaled_error=0.310967, candidate_max_scaled_error=0.310967
+wrap3: ring=1, iterations=64
+wrap3: validation passed, reference_max_scaled_error=0.329256, candidate_max_scaled_error=0.329256
+wrap4: ring=1, iterations=64
+wrap4: validation passed, reference_max_scaled_error=0.337476, candidate_max_scaled_error=0.337476
+wrap8: ring=1, iterations=64
+wrap8: validation passed, reference_max_scaled_error=0.34459, candidate_max_scaled_error=0.34459
+========= ERROR SUMMARY: 0 errors

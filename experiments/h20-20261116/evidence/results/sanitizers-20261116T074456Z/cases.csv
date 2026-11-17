@@ -1,0 +1,8 @@
+id,m,n,k
+tiny,1,8,8
+before_tile,63,120,56
+tile,64,128,64
+after_tile,65,136,72
+wrap3,127,248,200
+wrap4,129,264,264
+wrap8,65,136,520

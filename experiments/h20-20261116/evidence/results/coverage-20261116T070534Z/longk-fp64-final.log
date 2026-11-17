@@ -1,0 +1,11 @@
+long_k: ring=1, iterations=64
+long_k: fp32_oracle_max_abs_error=0.00312787
+validation mismatch: index=273, actual=0.87109375, expected=0.8031085134, scaled_error=2.425351581
+validation mismatch: index=273, actual=0.87109375, expected=0.8031085134, scaled_error=2.425351581
+long_k: fp32_oracle_max_abs_error=0.002694428375
+validation mismatch: index=7571, actual=-1.9453125, expected=-2.063994646, scaled_error=2.920332245
+validation mismatch: index=7571, actual=-1.9453125, expected=-2.063994646, scaled_error=2.920332245
+long_k: fp32_oracle_max_abs_error=0.003441268665
+validation mismatch: index=4044, actual=4.5, expected=4.634142399, scaled_error=2.022000596
+validation mismatch: index=4044, actual=4.5, expected=4.634142399, scaled_error=2.022000596
+long_k: validation FAILED, reference_max_scaled_error=2.920332245, candidate_max_scaled_error=2.920332245

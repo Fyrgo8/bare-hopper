@@ -1,0 +1,2 @@
+case,m,n,k,pattern,seed,repeats,oracle,reference_ok,candidate_ok,reference_max_scaled_error,candidate_max_scaled_error
+long_k,65,136,65536,logscale,17,3,fp64,0,0,2.920332245,2.920332245
